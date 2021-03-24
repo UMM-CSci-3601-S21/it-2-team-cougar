@@ -33,6 +33,7 @@ import { ContextPackCardComponent } from './contextpacks/contextpack-card.compon
 import { ContextPackInfoComponent } from './contextpacks/contextpack-info.component';
 import { AddContextpacksComponent } from './contextpacks/add-contextpacks.component';
 
+
 const MATERIAL_MODULES: any[] = [
   MatListModule,
   MatButtonModule,
@@ -59,7 +60,8 @@ const MATERIAL_MODULES: any[] = [
     ContextPackCardComponent,
     ContextPackListComponent,
     ContextPackInfoComponent,
-    AddContextpacksComponent
+    AddContextpacksComponent,
+
   ],
   imports: [
     BrowserModule,
