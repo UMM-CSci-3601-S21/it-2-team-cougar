@@ -10,6 +10,7 @@ import { ContextPack, Wordlist, WordRole } from './contextpack';
 export class ContextPackCardComponent implements OnInit {
 
   @Input() contextpack: ContextPack;
+  @Input() wordlist: Wordlist;
   @Input() simple ? = false;
   selected = 'true';
 

@@ -8,7 +8,7 @@
 
     <mat-card class="bottom-card">
 
-      <p><strong>Number of wordlists in Pack: </strong></p>
+      <p><strong>Number of wordlists in Pack: {{this.contextpack.wordlists.length}} </strong></p>
       <p><strong>Number of words in Pack: </strong></p>
 
     </mat-card>
@@ -26,7 +26,7 @@
 
     <div *ngIf="selected === 'true'; else templateWords">
       <div *ngFor="let wordlists of contextpack.wordlists; let index = index">
-        <span class="contextpack-card-wordlists"><div style="white-space: pre-line">{{displayWordlists(this.contextpack.wordlists[index])}}</div></span>
+        <app-wordlist-card class="wordlist-card" [wordlist]="this.contextpack.wordlists[index]"></app-wordlist-card>
       </div>
     </div>
 
