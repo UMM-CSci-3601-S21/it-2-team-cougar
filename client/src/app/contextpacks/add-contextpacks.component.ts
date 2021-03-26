@@ -15,19 +15,24 @@ export class AddContextpacksComponent implements OnInit {
   contextPackForm: FormGroup;
   contextpackcard = new ContextPackCardComponent();
   isShown = false;
-
+  enabled: true;
   formErrors = {
+    contextPacks: this.contextPacksErrors(),
     wordlists: this.wordlistsErrors()
   };
 
   validationMessages = {
+    contextPacks: {
+      name: [
+      {type: 'required', message: 'Name is required'},
+      {type: 'max length', message: 'Name must be shorter than 50 characters'}
+      ]
+    },
     wordlists: {
       name: [
         {type: 'required', message: 'Name is required'},
+        {type: 'max length', message: 'Name must be shorter than 50 characters'}
       ],
-      enabled: {
-        required: 'Must be true or false (check capitalization)',
-      },
       nouns: {
         word: {
         },
@@ -65,10 +70,7 @@ export class AddContextpacksComponent implements OnInit {
     this.contextPackForm = this.fb.group({
       name: new FormControl('', Validators.compose([
         Validators.required,
-      ])),
-      enabled: new FormControl('true', Validators.compose([
-        Validators.required,
-        Validators.pattern('^(true|false)'),
+        Validators.maxLength(50),
       ])),
       icon: '',
       wordlists: this.fb.array([])
@@ -81,10 +83,7 @@ export class AddContextpacksComponent implements OnInit {
       //  ---------------------forms fields on x level ------------------------
       name: new FormControl('', Validators.compose([
         Validators.required,
-      ])),
-      enabled: new FormControl('', Validators.compose([
-        Validators.required,
-        Validators.pattern('^(true|false)$'),
+        Validators.maxLength(50),
       ])),
       // ---------------------------------------------------------------------
       nouns: this.fb.array([]),
@@ -105,7 +104,9 @@ export class AddContextpacksComponent implements OnInit {
       ])
     });
   }
-
+  enable(val) {
+    this.enabled = val;
+  }
   addWordlist() {
     const control = this.contextPackForm.controls.wordlists as FormArray;
     control.push(this.initwordlist());
@@ -147,12 +148,19 @@ export class AddContextpacksComponent implements OnInit {
   wordlistsErrors() {
     return [{
       //  ---------------------forms errors on x level ------------------------
-      name: [' ', [Validators.required]],
-      enabled:[' ', [Validators.required]],
+      name: [' ', [Validators.required], [Validators.maxLength]],
 
       // ---------------------------------------------------------------------
       nouns: this.nounsErrors()
 
+    }];
+
+  }
+
+  contextPacksErrors() {
+    return [{
+      //  ---------------------forms errors on x level ------------------------
+      name: [' ', [Validators.required], [Validators.maxLength]],
     }];
 
   }
@@ -178,8 +186,7 @@ export class AddContextpacksComponent implements OnInit {
     let x = 1;
     while (x <= wordlistsA.length) {
       this.formErrors.wordlists.push({
-        name: [' ', [Validators.required]],
-        enabled: [' ', [Validators.required]],
+        name: [' ', [Validators.required], [Validators.maxLength]],
         nouns: [{
           word: '',
           forms: this.fb.array([
