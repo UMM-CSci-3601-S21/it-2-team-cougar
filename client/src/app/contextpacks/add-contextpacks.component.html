@@ -30,7 +30,7 @@
         <button class='remove-wl-btn' type="button" (click)="removeWordlists(ix)">Remove This Wordlist</button><br>
         <h1>Wordlist {{ix+1}}:</h1>
           <mat-form-field>
-            <mat-label>WordList Name</mat-label>
+            <mat-label>Wordlist Name</mat-label>
             <input matInput placeholder="Name" formControlName="name"
                   required>
             <mat-error *ngFor="let validation of validationMessages.wordlists.name">
