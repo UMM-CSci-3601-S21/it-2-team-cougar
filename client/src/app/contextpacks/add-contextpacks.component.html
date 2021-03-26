@@ -3,8 +3,8 @@
 <form [formGroup]="contextPackForm" (ngSubmit)="submitForm()" class="form">
   <mat-card class="add-contextpack-card">
     <mat-card-title class="add-pack-title">Create A New Context Pack</mat-card-title>
+    <mat-checkbox class="cp-enabled" [checked]="true" (change)="enable($event.checked)" color=primary>Enabled</mat-checkbox>
     <mat-card-content fxLayout="column">
-
     <mat-form-field>
       <mat-label>Pack Name</mat-label>
       <input matInput placeholder="Name" formControlName="name"
@@ -16,18 +16,6 @@
         </mat-error>
       </mat-error>
     </mat-form-field>
-
-  <mat-form-field>
-    <mat-label>Enabled</mat-label>
-    <mat-select required formControlName="enabled">
-      <mat-option value="true">True</mat-option>
-      <mat-option value="false">False</mat-option>
-    </mat-select>
-    <mat-error *ngIf="contextPackForm.get('enabled').hasError('required')">You must make a selection</mat-error>
-    <mat-error *ngIf="contextPackForm.get('enabled').hasError('pattern') && !contextPackForm.get('enabled').hasError('required')">
-      Your selection is invalid
-    </mat-error>
-  </mat-form-field>
 
   <mat-form-field>
     <mat-label>Icon (optional)</mat-label>
@@ -54,22 +42,7 @@
               </mat-error>
             </mat-error>
           </mat-form-field>
-        </label>
-        <label>
-          Enabled:
-          <mat-form-field>
-            <mat-label>Enabled</mat-label>
-            <mat-select required formControlName="enabled">
-              <mat-option value="true">True</mat-option>
-              <mat-option value="false">False</mat-option>
-            </mat-select>
-            <mat-error *ngIf="contextPackForm.get('enabled').hasError('required')">You must make a selection</mat-error>
-            <mat-error *ngIf="contextPackForm.get('enabled').hasError('pattern') && !contextPackForm.get('enabled').hasError('required')">
-              Your selection is invalid
-            </mat-error>
-          </mat-form-field>
-
-        </label>
+          <mat-checkbox class="wl-enabled" [checked]="true" (change)="enable($event.checked)" color=primary>Enabled</mat-checkbox>
 
 
 				<!-- Nouns -->
