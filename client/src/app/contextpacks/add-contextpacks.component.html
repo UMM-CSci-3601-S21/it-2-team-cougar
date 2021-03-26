@@ -27,12 +27,10 @@
 	<div formArrayName="wordlists">
 		<div *ngFor="let wordlists of contextPackForm['controls'].wordlists['controls']; let ix=index">
 			<div formGroupName="{{ix}}" class="wordlists">
-        <button type="button" (click)="removeWordlists(ix)">Remove This Wordlist</button><br>
+        <button class='remove-wl-btn' type="button" (click)="removeWordlists(ix)">Remove This Wordlist</button><br>
         <h1>Wordlist {{ix+1}}:</h1>
-        <label>
-          Wordlist Name:
           <mat-form-field>
-            <mat-label>Wordlist Name</mat-label>
+            <mat-label>WordList Name</mat-label>
             <input matInput placeholder="Name" formControlName="name"
                   required>
             <mat-error *ngFor="let validation of validationMessages.wordlists.name">
@@ -52,7 +50,7 @@
             <div *ngFor="let nouns of wordlists['controls'].nouns['controls']; let iy=index">
               <div formGroupName="{{iy}}" class="nouns">
                 <div>
-                <button type="button" (click)="removeWord(ix, iy, 'nouns')">Remove Noun</button>
+                <button class="delete-noun-btn" type="button" (click)="removeWord(ix, iy, 'nouns')">Remove Noun</button>
                 </div>
 
                 <div *ngFor="let forms of nouns['controls'].forms['controls']; let iz=index">
@@ -99,7 +97,7 @@
             <div *ngFor="let adj of wordlists['controls'].adjectives['controls']; let iy=index">
               <div formGroupName="{{iy}}" class="adjectives" >
                 <div>
-                  <button type="button" (click)="removeWord(ix, iy, 'adjectives')">Remove Adjective</button>
+                  <button class="delete-adj-btn" type="button" (click)="removeWord(ix, iy, 'adjectives')">Remove Adjective</button>
                 </div>
 
                 <!---Forms -->
@@ -147,7 +145,7 @@
             <div *ngFor="let verbs of wordlists['controls'].verbs['controls']; let iy=index">
               <div formGroupName="{{iy}}" class="verbs" >
                 <div>
-                  <button type="button" (click)="removeWord(ix, iy, 'verbs')">Remove Verb</button>
+                  <button class="delete-verb-btn" type="button" (click)="removeWord(ix, iy, 'verbs')">Remove Verb</button>
                 </div>
 
                 <!---Forms -->
@@ -195,7 +193,7 @@
             <div *ngFor="let misc of wordlists['controls'].misc['controls']; let iy=index">
               <div formGroupName="{{iy}}" class="misc" >
                 <div>
-                  <button type="button" (click)="removeWord(ix, iy, 'misc')">Remove Misc</button>
+                  <button class="delete-misc-btn" type="button" (click)="removeWord(ix, iy, 'misc')">Remove Misc</button>
                 </div>
 
                <!---Forms -->
@@ -248,7 +246,7 @@
 </form>
     <div class="buttons-div">
 
-      <button type="submit" (click)="submitForm()"
+      <button class='add-cp-btn' type="submit" (click)="submitForm()"
         mat-button
         type="button"
         color="primary"
@@ -259,9 +257,6 @@
         ADD CONTEXT PACK
       </button>
 
-		<h5>Field Values</h5>
-
-
     <button class="contextpack-download-button"
     type="button"
     color='primary'
@@ -270,7 +265,7 @@
 
     >Download Json</button>
 
-    <br><button matTooltip="View current Json" (click)="toggleShow()" type="checkbox" data-test="showJsonButton">Preview Json File</button>
+    <br><button class='view-btn' matTooltip="View current Json" (click)="toggleShow()" type="checkbox" data-test="showJsonButton">Preview Json File</button>
     <div *ngIf='isShown===true'>
 
 		<pre class="form-value" style="font-size:15px">{{ contextPackForm.value | json }}</pre>
