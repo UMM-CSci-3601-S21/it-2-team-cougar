@@ -2,6 +2,7 @@
   <div>
     <div class="card-header">
       <h1 class="wordList-name">{{wordlist.name}}</h1>
+      {{wordlist.enabled ? 'Enabled' : 'Disabled'}}
     </div>
   </div>
   <mat-card-content>
@@ -9,23 +10,23 @@
         <div class="nounsList">
             <!--display:flex-->
             <p  class="desc title-section" element="nouns"><strong>Nouns:</strong></p>
-            <p  *ngFor="let noun of wordlist.nouns">{{noun.word}}</p>
+            <p  color="primary" class="bubbleNoun" *ngFor="let noun of wordlist.nouns">{{noun.word}}</p>
           </div>
           <div class="verbsList">
             <!--display:flex-->
             <p  class="desc title-section" element="verbs"><strong>Verbs:</strong></p>
-            <p  *ngFor="let verb of wordlist.verbs">{{verb.word}}</p>
+            <p  color="primary" class="bubbleVerb" *ngFor="let verb of wordlist.verbs">{{verb.word}}</p>
           </div>
           <div class="adjectivesList">
             <!--display:flex-->
             <p  class="desc title-section" element="adjectives"><strong>Adjectives:</strong></p>
-            <p  *ngFor="let adjective of wordlist.adjectives">{{adjective.word}}</p>
+            <p  color="primary" class="bubbleAdj" *ngFor="let adjective of wordlist.adjectives">{{adjective.word}}</p>
 
           </div>
           <div class="miscList">
             <!--display:flex-->
             <p  class="desc title-section" element="misc"><strong>Misc:</strong></p>
-            <p  *ngFor="let misc of wordlist.misc">{{misc.word}}</p>
+            <p  color="primary" class="bubbleMisc" *ngFor="let misc of wordlist.misc">{{misc.word}}</p>
 
           </div>
     </div>

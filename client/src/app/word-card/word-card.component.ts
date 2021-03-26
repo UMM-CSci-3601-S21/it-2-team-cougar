@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ContextPack, Wordlist } from '../contextpacks/contextpack';
 
 @Component({
   selector: 'app-word-card',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./word-card.component.scss']
 })
 export class WordCardComponent implements OnInit {
+
+  @Input() contextpack: ContextPack;
+  @Input() wordlist: Wordlist;
 
   constructor() { }
 
