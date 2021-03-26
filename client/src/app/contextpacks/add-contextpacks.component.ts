@@ -18,43 +18,44 @@ export class AddContextpacksComponent implements OnInit {
   enabled: true;
   formErrors = {
     contextPacks: this.contextPacksErrors(),
-    wordlists: this.wordlistsErrors()
+    wordlists: this.wordlistsErrors(),
+    nouns: this.nounsErrors()
   };
 
   validationMessages = {
     contextPacks: {
       name: [
       {type: 'required', message: 'Name is required'},
-      {type: 'max length', message: 'Name must be shorter than 50 characters'}
+      {type: 'maxlength', message: 'Name must be shorter than 50 characters'}
       ]
     },
     wordlists: {
       name: [
         {type: 'required', message: 'Name is required'},
-        {type: 'max length', message: 'Name must be shorter than 50 characters'}
+        {type: 'maxlength', message: 'Name must be shorter than 50 characters'}
       ],
       nouns: {
         word: {
         },
         forms: {
         },
-      },
+    },
       adjectives: {
-        word: {
+        word: {type: 'maxlength', message: 'Name must be shorter than 50 characters'
         },
-        forms: {
+        forms: {type: 'maxlength', message: 'Name must be shorter than 50 characters'
         },
       },
       verbs: {
-        word: {
+        word: {type: 'maxlength', message: 'Name must be shorter than 50 characters'
         },
-        forms: {
+        forms: {type: 'maxlength', message: 'Name must be shorter than 50 characters'
         },
       },
       misc: {
-        word: {
+        word: {type: 'maxlength', message: 'Name must be shorter than 50 characters'
         },
-        forms: {
+        forms: {type: 'maxlength', message: 'Name must be shorter than 50 characters'
         },
       }
     }
@@ -97,7 +98,9 @@ export class AddContextpacksComponent implements OnInit {
   initNouns() {
     return this.fb.group({
       //  ---------------------forms fields on y level ------------------------
-      word: [''],
+      word: new FormControl('',Validators.compose([
+        Validators.maxLength(50),
+      ])),
       // ---------------------------------------------------------------------
       forms: this.fb.array([
         this.fb.control('')
@@ -168,7 +171,7 @@ export class AddContextpacksComponent implements OnInit {
   nounsErrors() {
     return [{
       //  ---------------------forms errors on y level ------------------------
-      word: '',
+      word: [' ', [Validators.maxLength]],
       forms: this.fb.array([
         this.fb.control('')
       ]),
@@ -188,7 +191,7 @@ export class AddContextpacksComponent implements OnInit {
       this.formErrors.wordlists.push({
         name: [' ', [Validators.required], [Validators.maxLength]],
         nouns: [{
-          word: '',
+          word: [' ', [Validators.maxLength]],
           forms: this.fb.array([
             this.fb.control('')
           ]),
