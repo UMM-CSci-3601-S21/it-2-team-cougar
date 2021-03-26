@@ -34,6 +34,7 @@ import { ContextPackInfoComponent } from './contextpacks/contextpack-info.compon
 import { AddContextpacksComponent } from './contextpacks/add-contextpacks.component';
 import { WordlistCardComponent } from './wordlist-card/wordlist-card.component';
 import { WordlistInfoComponent } from './wordlist-info/wordlist-info.component';
+import { WordCardComponent } from './word-card/word-card.component';
 
 
 const MATERIAL_MODULES: any[] = [
@@ -65,6 +66,7 @@ const MATERIAL_MODULES: any[] = [
     AddContextpacksComponent,
     WordlistCardComponent,
     WordlistInfoComponent,
+    WordCardComponent,
 
   ],
   imports: [
