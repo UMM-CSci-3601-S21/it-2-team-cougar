@@ -1,16 +1,16 @@
 <mat-card class="word-card">
   <div class="card-header">
-    <h1 class="word-name">Word Name</h1>
+    <h1 class="word-name">{{word.word}}</h1>
     <mat-card-subtitle class="word-type"></mat-card-subtitle>
   </div>
   <mat-card-content>
     <div class="holder">
       <p class="forms">Forms: </p>
-      <p></p>
+      <p *ngFor="let form of word.forms">{{form}}</p>
     </div>
 
   </mat-card-content>
   <div>
-    <button>Delete Word</button>
+    <button><mat-icon matListIcon>delete</mat-icon></button>
   </div>
 </mat-card>

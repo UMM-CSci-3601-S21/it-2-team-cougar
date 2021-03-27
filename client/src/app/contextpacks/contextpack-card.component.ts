@@ -107,7 +107,7 @@ export class ContextPackCardComponent implements OnInit {
 
   countWords(){
     let count = 0;
-    if(this.contextpack.wordlists && this.contextpack.wordlists.length > 0){
+    if(this.contextpack.wordlists.length > 0){
       this.contextpack.wordlists.forEach(w => {
         count += w.adjectives.length + w.nouns.length + w.verbs.length + w.misc.length;
       });

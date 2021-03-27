@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ContextPack, Wordlist } from '../contextpacks/contextpack';
+import { ContextPack, Word, Wordlist } from '../contextpacks/contextpack';
 
 @Component({
   selector: 'app-word-card',
@@ -10,6 +10,7 @@ export class WordCardComponent implements OnInit {
 
   @Input() contextpack: ContextPack;
   @Input() wordlist: Wordlist;
+  @Input() word: Word;
 
   constructor() { }
 

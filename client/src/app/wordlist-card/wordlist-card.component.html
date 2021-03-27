@@ -5,12 +5,17 @@
       {{wordlist.enabled ? 'Enabled' : 'Disabled'}}
     </div>
   </div>
+
+  <p><strong>Amount of Words in List:</strong></p>
+  <mat-card-subtitle>{{wordlist.nouns.length + wordlist.verbs.length + wordlist.adjectives.length + wordlist.misc.length }}</mat-card-subtitle>
+
   <mat-card-content>
     <div class= "list-detail">
         <div class="nounsList">
             <!--display:flex-->
             <p  class="desc title-section" element="nouns"><strong>Nouns:</strong></p>
-            <p  color="primary" class="bubbleNoun" *ngFor="let noun of wordlist.nouns">{{noun.word}}</p>
+            <p  color="primary" class="bubbleNoun" *ngFor="let noun of wordlist.nouns; let index = index">
+              <app-word-card [word]="this.wordlist.nouns[index]"></app-word-card></p>
           </div>
           <div class="verbsList">
             <!--display:flex-->
