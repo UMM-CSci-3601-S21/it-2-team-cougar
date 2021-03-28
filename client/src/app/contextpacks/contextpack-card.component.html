@@ -1,15 +1,18 @@
 <mat-card class="contextpack-card" *ngIf="this.contextpack">
   <mat-card-header>
     <mat-card-title class="contextpack-card-name">{{ this.contextpack.name.charAt(0).toUpperCase() + this.contextpack.name.slice(1) }}</mat-card-title>
+    <button>Edit Name</button>
+    <button>Add WordList</button>
     <mat-card-subtitle class="contextpack-card-enabled">Enabled: {{ this.contextpack.enabled }}</mat-card-subtitle>
     <mat-card-subtitle class="contextpack-card-icon">Icon: {{ this.contextpack.icon }}</mat-card-subtitle>
+
   </mat-card-header>
   <mat-card-content *ngIf="!this.simple">
 
     <mat-card class="bottom-card">
 
       <p><strong>Number of wordlists in Pack: {{this.contextpack.wordlists.length}} </strong></p>
-      <p><strong>Number of words in Pack: {{wordcount}}</strong></p>
+
 
     </mat-card>
 
