@@ -102,10 +102,17 @@ describe('Contextpack list', () => {
     + 'meowed, bark, barks, barked, barking');
   });
 
+  it('Should click view info and check for the number of wordlists', () => {
+    page.clickViewInfo(page.getContextpackCards().first());
+
+    cy.get('.cpMetadata').should('have.text', 'Number of wordlists in Pack: 2');
+  });
+
   it('Should click view info, select a view words, and see all the words', () => {
     page.clickViewInfo(page.getContextpackCards().first());
     page.selectView('false');
 
+    cy.get('.cpMetadata').should('have.text', 'Number of wordlists in Pack: 2');
     cy.get('.contextpack-card-name').should('have.text', 'Farm');
     cy.get('.contextpack-card-enabled').should('have.text', 'Enabled: true');
     cy.get('.contextpack-card-nouns').should('contain.text', 'goat, goats, sheep, cat, cats, dog, '
