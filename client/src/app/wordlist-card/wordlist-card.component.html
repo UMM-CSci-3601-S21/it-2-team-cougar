@@ -13,36 +13,34 @@
     <div class= "list-detail">
         <div class="nounsList">
             <!--display:flex-->
-            <p  class="desc title-section" element="nouns"><strong>Nouns:</strong></p>
+            <p  class="desc title-section" element="nouns"><strong>Nouns: </strong></p>
             <p  color="primary" class="bubbleNoun" *ngFor="let noun of wordlist.nouns; let index = index">
               <app-word-card [word]="this.wordlist.nouns[index]"></app-word-card></p>
-            <button mat-fab><mat-icon>add</mat-icon></button>
+            <button mat-fab class="btn-noun"><mat-icon>add</mat-icon></button>
           </div>
           <div class="verbsList">
             <!--display:flex-->
-            <p  class="desc title-section" element="verbs"><strong>Verbs:</strong></p>
+            <p  class="desc title-section" element="verbs"><strong>Verbs: </strong></p>
             <p  color="primary" class="bubbleVerb" *ngFor="let verb of wordlist.verbs; let index = index">
               <app-word-card [word]="this.wordlist.verbs[index]"></app-word-card></p>
-            <button mat-fab><mat-icon>add</mat-icon></button>
+            <button mat-fab class="btn-verb"><mat-icon>add</mat-icon></button>
           </div>
           <div class="adjectivesList">
             <!--display:flex-->
-            <p  class="desc title-section" element="adjectives"><strong>Adjectives:</strong></p>
+            <p  class="desc title-section" element="adjectives"><strong>Adjectives: </strong></p>
             <p  color="primary" class="bubbleAdj" *ngFor="let adjective of wordlist.adjectives; let index = index">
               <app-word-card [word]="this.wordlist.adjectives[index]"></app-word-card></p>
-            <button mat-fab><mat-icon>add</mat-icon></button>
+            <button mat-fab class="btn-adj"><mat-icon>add</mat-icon></button>
           </div>
           <div class="miscList">
             <!--display:flex-->
-            <p  class="desc title-section" element="misc"><strong>Misc:</strong></p>
+            <p  class="desc title-section" element="misc"><strong>Misc: </strong></p>
             <p  color="primary" class="bubbleMisc" *ngFor="let misc of wordlist.misc; let index = index">
               <app-word-card [word]="this.wordlist.misc[index]"></app-word-card></p>
-            <button mat-fab><mat-icon>add</mat-icon></button>
+            <button mat-fab class="btn-misc"><mat-icon>add</mat-icon></button>
 
           </div>
     </div>
   </mat-card-content>
-  <div>
-    <button class="btn" [routerLink]="['/wordlist', this.wordlist.name]">View WordList</button>
-  </div>
+
 </mat-card>
