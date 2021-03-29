@@ -19,7 +19,10 @@ export class AddContextpacksComponent implements OnInit {
   formErrors = {
     contextPacks: this.contextPacksErrors(),
     wordlists: this.wordlistsErrors(),
-    nouns: this.nounsErrors()
+    nouns: this.nounsErrors(),
+    adjectives: this.adjectivesErrors(),
+    verbs: this.verbsErrors(),
+    misc: this.miscErrors()
   };
 
   validationMessages = {
@@ -35,21 +38,21 @@ export class AddContextpacksComponent implements OnInit {
         {type: 'maxlength', message: 'Name must be shorter than 50 characters'}
       ],
       nouns: {
-        word: {
+        word: {type: 'maxlength', message: 'Word must be shorter than 50 characters'
         },
-        forms: {
+        forms: {type: 'maxlength', message: 'Word must be shorter than 50 characters'
         },
     },
       adjectives: {
-        word: {type: 'maxlength', message: 'Name must be shorter than 50 characters'
+        word: {type: 'maxlength', message: 'Word must be shorter than 50 characters'
         },
-        forms: {type: 'maxlength', message: 'Name must be shorter than 50 characters'
+        forms: {type: 'maxlength', message: 'Word must be shorter than 50 characters'
         },
       },
       verbs: {
-        word: {type: 'maxlength', message: 'Name must be shorter than 50 characters'
+        word: {type: 'maxlength', message: 'Word must be shorter than 50 characters'
         },
-        forms: {type: 'maxlength', message: 'Name must be shorter than 50 characters'
+        forms: {type: 'maxlength', message: 'Word must be shorter than 50 characters'
         },
       },
       misc: {
@@ -154,7 +157,10 @@ export class AddContextpacksComponent implements OnInit {
       name: [' ', [Validators.required], [Validators.maxLength]],
 
       // ---------------------------------------------------------------------
-      nouns: this.nounsErrors()
+      nouns: this.nounsErrors(),
+      adjectives: this.adjectivesErrors(),
+      verbs: this.verbsErrors(),
+      misc: this.miscErrors(),
 
     }];
 
@@ -169,6 +175,36 @@ export class AddContextpacksComponent implements OnInit {
   }
 
   nounsErrors() {
+    return [{
+      //  ---------------------forms errors on y level ------------------------
+      word: [' ', [Validators.maxLength]],
+      forms: this.fb.array([
+        this.fb.control('')
+      ]),
+
+    }];
+  }
+  adjectivesErrors() {
+    return [{
+      //  ---------------------forms errors on y level ------------------------
+      word: [' ', [Validators.maxLength]],
+      forms: this.fb.array([
+        this.fb.control('')
+      ]),
+
+    }];
+  }
+  verbsErrors() {
+    return [{
+      //  ---------------------forms errors on y level ------------------------
+      word: [' ', [Validators.maxLength]],
+      forms: this.fb.array([
+        this.fb.control('')
+      ]),
+
+    }];
+  }
+  miscErrors() {
     return [{
       //  ---------------------forms errors on y level ------------------------
       word: [' ', [Validators.maxLength]],
@@ -195,7 +231,10 @@ export class AddContextpacksComponent implements OnInit {
           forms: this.fb.array([
             this.fb.control('')
           ]),
-        }]
+        }],
+        verbs:[],
+        adjectives:[],
+        misc:[]
       });
       x++;
     }
