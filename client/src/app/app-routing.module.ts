@@ -5,12 +5,15 @@ import { ContextPackListComponent } from './contextpacks/contextpack-list.compon
 import { ContextPackInfoComponent } from './contextpacks/contextpack-info.component';
 import { AddContextpacksComponent } from './contextpacks/add-contextpacks.component';
 import { WordlistInfoComponent } from './wordlist-info/wordlist-info.component';
+import { EditContextpackNameComponent } from './edit-contextpack-name/edit-contextpack-name.component';
 
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'contextpacks', component: ContextPackListComponent},
-  {path: 'contextpacks/:id', component: ContextPackInfoComponent},
+  {path: 'contextpacks/:id', component: ContextPackInfoComponent, children: [
+    {path: 'edit', component: EditContextpackNameComponent}
+  ]},
   {path: 'edit', component: AddContextpacksComponent},
   {path: 'wordlist/:name', component: WordlistInfoComponent}
 ];

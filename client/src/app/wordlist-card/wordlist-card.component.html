@@ -1,7 +1,16 @@
 <mat-card class="wordList-card">
   <div>
     <div class="card-header">
-      <h1 class="wordList-name">{{wordlist.name}}</h1><button>Edit Name</button>
+      <div *ngIf="editshow == true; else editname">
+        <h1 class="wordList-name">{{wordlist.name}}</h1><button (click)="change()">Edit Name</button>
+      </div>
+      <ng-template #editname>
+        <mat-form-field class="title">
+          <mat-label>Edit Word List Name</mat-label>
+          <input matInput name="name" [(ngModel)]="name">
+          <button (click)="save()">Save</button>
+        </mat-form-field>
+      </ng-template>
       {{wordlist.enabled ? 'Enabled' : 'Disabled'}}
     </div>
   </div>

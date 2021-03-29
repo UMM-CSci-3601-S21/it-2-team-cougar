@@ -1,7 +1,14 @@
 <mat-card class="contextpack-card" *ngIf="this.contextpack">
   <mat-card-header>
-    <mat-card-title class="contextpack-card-name">{{ this.contextpack.name.charAt(0).toUpperCase() + this.contextpack.name.slice(1) }}</mat-card-title>
-    <button>Edit Name</button>
+    <mat-card-title class="contextpack-card-name" *ngIf="editshow == true; else editname">{{ this.contextpack.name.charAt(0).toUpperCase() + this.contextpack.name.slice(1) }}</mat-card-title>
+    <ng-template #editname>
+        <mat-form-field>
+          <mat-label>Edit Word List Name</mat-label>
+          <input matInput name="name" [(ngModel)]="name">
+          <button (click)="save()">Save</button>
+        </mat-form-field>
+    </ng-template>
+    <button (click)="change()" *ngIf="editshow">Edit Name</button>
     <button>Add WordList</button>
     <mat-card-subtitle class="contextpack-card-enabled">Enabled: {{ this.contextpack.enabled }}</mat-card-subtitle>
     <mat-card-subtitle class="contextpack-card-icon">Icon: {{ this.contextpack.icon }}</mat-card-subtitle>
@@ -9,12 +16,12 @@
   </mat-card-header>
   <mat-card-content *ngIf="!this.simple">
 
-    <mat-card class="bottom-card">
-
-      <p><strong>Number of wordlists in Pack: {{this.contextpack.wordlists.length}} </strong></p>
 
 
-    </mat-card>
+  <p><strong>Number of wordlists in Pack: {{this.contextpack.wordlists.length}} </strong></p>
+
+
+
 
       <button mat-icon-button color="accent" class="contextpack-download-button" (click)='downloadJson(contextpack, contextpack.name).click()'>
     <mat-icon>download</mat-icon>

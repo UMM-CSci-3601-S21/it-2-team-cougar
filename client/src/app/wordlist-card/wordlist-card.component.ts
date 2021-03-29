@@ -11,11 +11,21 @@ export class WordlistCardComponent implements OnInit {
   @Input() contextpack: ContextPack;
   @Input() wordlist: Wordlist;
   @Input() simple ? = false;
-  selected = 'true';
+  editshow= true;
+  name = '';
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  change(){
+    this.editshow = !this.editshow;
+  }
+
+  save(){
+    this.wordlist.name = this.name;
+    this.editshow = !this.editshow;
   }
 
 

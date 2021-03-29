@@ -13,6 +13,8 @@ export class ContextPackCardComponent implements OnInit {
   @Input() wordlist: Wordlist;
   @Input() simple ? = false;
   selected = 'true';
+  editshow = true;
+  name ='';
   wordcount = 0;
 
   constructor() { }
@@ -113,5 +115,14 @@ export class ContextPackCardComponent implements OnInit {
       });
     }
     this.wordcount = count;
+  }
+
+  change(){
+    this.editshow = !this.editshow;
+  }
+
+  save(){
+    this.contextpack.name = this.name;
+    this.editshow = !this.editshow;
   }
 }
