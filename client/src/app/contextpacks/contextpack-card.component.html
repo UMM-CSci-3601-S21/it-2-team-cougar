@@ -1,15 +1,16 @@
 <mat-card class="contextpack-card" *ngIf="this.contextpack">
   <mat-card-header>
-    <mat-card-title class="contextpack-card-name" *ngIf="editshow == true; else editname">{{ this.contextpack.name.charAt(0).toUpperCase() + this.contextpack.name.slice(1) }}</mat-card-title>
+    <mat-card-title class="contextpack-card-name" *ngIf="editshow == true; else editname">{{
+      this.contextpack.name.charAt(0).toUpperCase() + this.contextpack.name.slice(1) }}</mat-card-title>
     <ng-template #editname>
-        <mat-form-field>
-          <mat-label>Edit Word List Name</mat-label>
-          <input matInput name="name" [(ngModel)]="name">
-          <button (click)="save()">Save</button>
-        </mat-form-field>
+      <mat-form-field>
+        <mat-label>Edit Word List Name</mat-label>
+        <input matInput name="name" [(ngModel)]="name">
+      </mat-form-field>
+      <button (click)="save()">Save</button>
     </ng-template>
     <button (click)="change()" *ngIf="editshow">Edit Name</button>
-    <button>Add WordList</button>
+    <button [routerLink]="['/contextpacks', this.contextpack._id, 'addwordlist']">Add WordList</button>
     <mat-card-subtitle class="contextpack-card-enabled">Enabled: {{ this.contextpack.enabled }}</mat-card-subtitle>
     <mat-card-subtitle class="contextpack-card-icon">Icon: {{ this.contextpack.icon }}</mat-card-subtitle>
 
@@ -17,16 +18,16 @@
   <mat-card-content *ngIf="!this.simple">
 
 
-      <p><strong class="cpMetadata">Number of wordlists in Pack: {{this.contextpack.wordlists.length}}</strong></p>
-
-  <p><strong>Number of wordlists in Pack: {{this.contextpack.wordlists.length}} </strong></p>
+    <p><strong class="cpMetadata">Number of wordlists in Pack: {{this.contextpack.wordlists.length}}</strong></p>
 
 
 
 
-      <button mat-icon-button color="accent" class="contextpack-download-button" (click)='downloadJson(contextpack, contextpack.name).click()'>
-    <mat-icon>download</mat-icon>
-  </button>
+
+    <button mat-icon-button color="accent" class="contextpack-download-button"
+      (click)='downloadJson(contextpack, contextpack.name).click()'>
+      <mat-icon>download</mat-icon>
+    </button>
     <mat-form-field>
       <mat-label>View Type</mat-label>
       <mat-select [(value)]="selected" data-test="contextpackWordSelect">
@@ -42,11 +43,19 @@
     </div>
 
     <ng-template #templateWords>
-        <span class="contextpack-card-nouns"><div style="white-space: pre-line">Nouns: {{displayAllWords(this.contextpack, 'nouns')}}</div></span>
-        <span class="contextpack-card-verbs"><div style="white-space: pre-line">Verbs: {{displayAllWords(this.contextpack, 'verbs')}}</div></span>
-        <span class="contextpack-card-adjectives"><div style="white-space: pre-line">Adjectives: {{displayAllWords(this.contextpack, 'adjectives')}}</div></span>
-        <span class="contextpack-card-misc"><div style="white-space: pre-line">Misc: {{displayAllWords(this.contextpack, 'misc')}}</div></span>
-  </ng-template>
+      <span class="contextpack-card-nouns">
+        <div style="white-space: pre-line">Nouns: {{displayAllWords(this.contextpack, 'nouns')}}</div>
+      </span>
+      <span class="contextpack-card-verbs">
+        <div style="white-space: pre-line">Verbs: {{displayAllWords(this.contextpack, 'verbs')}}</div>
+      </span>
+      <span class="contextpack-card-adjectives">
+        <div style="white-space: pre-line">Adjectives: {{displayAllWords(this.contextpack, 'adjectives')}}</div>
+      </span>
+      <span class="contextpack-card-misc">
+        <div style="white-space: pre-line">Misc: {{displayAllWords(this.contextpack, 'misc')}}</div>
+      </span>
+    </ng-template>
 
 
 
@@ -54,9 +63,9 @@
 
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button data-test="viewInfoButton" *ngIf="this.simple"  [routerLink]="['/contextpacks', this.contextpack._id]">View Info</button>
+    <button mat-button data-test="viewInfoButton" *ngIf="this.simple"
+      [routerLink]="['/contextpacks', this.contextpack._id]">View Info</button>
   </mat-card-actions>
 
 
 </mat-card>
-

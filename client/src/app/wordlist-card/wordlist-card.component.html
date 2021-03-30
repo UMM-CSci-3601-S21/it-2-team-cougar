@@ -8,8 +8,8 @@
         <mat-form-field class="title">
           <mat-label>Edit Word List Name</mat-label>
           <input matInput name="name" [(ngModel)]="name">
-          <button (click)="save()">Save</button>
         </mat-form-field>
+        <button (click)="save()">Save</button>
       </ng-template>
       {{wordlist.enabled ? 'Enabled' : 'Disabled'}}
     </div>
@@ -25,7 +25,7 @@
             <p  class="desc title-section" element="nouns"><strong>Nouns: </strong></p>
             <p  color="primary" class="bubbleNoun" *ngFor="let noun of wordlist.nouns; let index = index">
               <app-word-card [word]="this.wordlist.nouns[index]"></app-word-card></p>
-            <button mat-fab class="btn-noun"><mat-icon>add</mat-icon></button>
+            <button [routerLink]="['/wordlist', this.wordlist.name, 'addword']" mat-fab class="btn-noun"><mat-icon>add</mat-icon></button>
           </div>
           <div class="verbsList">
             <!--display:flex-->

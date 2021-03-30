@@ -20,7 +20,6 @@ export class ContextPackCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.countWords();
   }
 
 
@@ -107,15 +106,6 @@ export class ContextPackCardComponent implements OnInit {
       return str;
   }
 
-  countWords(){
-    let count = 0;
-    if(this.contextpack.wordlists.length > 0){
-      this.contextpack.wordlists.forEach(w => {
-        count += w.adjectives.length + w.nouns.length + w.verbs.length + w.misc.length;
-      });
-    }
-    this.wordcount = count;
-  }
 
   change(){
     this.editshow = !this.editshow;

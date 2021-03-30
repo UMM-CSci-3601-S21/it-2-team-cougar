@@ -4,18 +4,17 @@ import { HomeComponent } from './home/home.component';
 import { ContextPackListComponent } from './contextpacks/contextpack-list.component';
 import { ContextPackInfoComponent } from './contextpacks/contextpack-info.component';
 import { AddContextpacksComponent } from './contextpacks/add-contextpacks.component';
-import { WordlistInfoComponent } from './wordlist-info/wordlist-info.component';
-import { EditContextpackNameComponent } from './edit-contextpack-name/edit-contextpack-name.component';
+import { AddWordlistComponent } from './add-wordlist/add-wordlist.component';
+import { AddWordComponent } from './add-word/add-word.component';
 
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'contextpacks', component: ContextPackListComponent},
-  {path: 'contextpacks/:id', component: ContextPackInfoComponent, children: [
-    {path: 'edit', component: EditContextpackNameComponent}
-  ]},
+  {path: 'contextpacks/:id', component: ContextPackInfoComponent},
+  {path: 'contextpacks/:id/addwordlist', component: AddWordlistComponent},
   {path: 'edit', component: AddContextpacksComponent},
-  {path: 'wordlist/:name', component: WordlistInfoComponent}
+  {path: 'wordlist/:name/addword', component: AddWordComponent}
 ];
 
 @NgModule({
