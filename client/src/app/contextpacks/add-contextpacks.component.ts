@@ -37,29 +37,49 @@ export class AddContextpacksComponent implements OnInit {
         {type: 'required', message: 'Name is required'},
         {type: 'maxlength', message: 'Name must be shorter than 50 characters'}
       ],
+
       nouns: {
-        word: {type: 'maxlength', message: 'Word must be shorter than 50 characters'
-        },
-        forms: {type: 'maxlength', message: 'Word must be shorter than 50 characters'
-        },
-    },
+        word: [
+          {type: 'required', message: 'Noun must not be empty'},
+          {type: 'maxlength', message: 'Noun must be shorter than 50 characters'}
+        ],
+        forms: [
+          {type: 'required', message: 'Form is required'},
+          {type: 'maxlength', message: 'Form must be shorter than 50 characters'}
+        ],
+      },
+
       adjectives: {
-        word: {type: 'maxlength', message: 'Word must be shorter than 50 characters'
-        },
-        forms: {type: 'maxlength', message: 'Word must be shorter than 50 characters'
-        },
+        word: [
+          {type: 'required', message: 'Adjective must not be empty'},
+          {type: 'maxlength', message: 'Adjective must be shorter than 50 characters'}
+        ],
+        forms: [
+          {type: 'required', message: 'Form is required'},
+          {type: 'maxlength', message: 'Form must be shorter than 50 characters'}
+        ],
       },
+
       verbs: {
-        word: {type: 'maxlength', message: 'Word must be shorter than 50 characters'
-        },
-        forms: {type: 'maxlength', message: 'Word must be shorter than 50 characters'
-        },
+        word: [
+          {type: 'maxlength', message: 'Verb must be shorter than 50 characters'},
+          {type: 'required', message: 'Verb must not be empty'}
+        ],
+        forms: [
+          {type: 'required', message: 'Form is required'},
+          {type: 'maxlength', message: 'Form must be shorter than 50 characters'}
+        ],
       },
+
       misc: {
-        word: {type: 'maxlength', message: 'Name must be shorter than 50 characters'
-        },
-        forms: {type: 'maxlength', message: 'Name must be shorter than 50 characters'
-        },
+        word: [
+          {type: 'required', message: 'Misc must not be empty'},
+          {type: 'maxlength', message: 'Misc must be shorter than 50 characters'}
+        ],
+        forms: [
+          {type: 'required', message: 'Form is required'},
+          {type: 'maxlength', message: 'Form must be shorter than 50 characters'}
+        ],
       }
     }
   };
@@ -94,7 +114,6 @@ export class AddContextpacksComponent implements OnInit {
       adjectives: this.fb.array([]),
       verbs: this.fb.array([]),
       misc: this.fb.array([])
-
     });
   }
 
@@ -102,6 +121,7 @@ export class AddContextpacksComponent implements OnInit {
     return this.fb.group({
       //  ---------------------forms fields on y level ------------------------
       word: new FormControl('',Validators.compose([
+        Validators.required,
         Validators.maxLength(50),
       ])),
       // ---------------------------------------------------------------------
@@ -132,7 +152,7 @@ export class AddContextpacksComponent implements OnInit {
 
     const formAdd = (((this.contextPackForm.controls.wordlists as FormArray).at(ix).get(`${pos}`) as FormArray).at(iy)
     .get('forms') as FormArray).at(0).value.toString();
-    console.log('didnt go through');
+    console.log('did not go through');
       control.setValue(formAdd);
       console.log(ix,iy);
   }
@@ -170,14 +190,15 @@ export class AddContextpacksComponent implements OnInit {
     return [{
       //  ---------------------forms errors on x level ------------------------
       name: [' ', [Validators.required], [Validators.maxLength]],
-    }];
 
+      wordlist: this.wordlistsErrors(),
+    }];
   }
 
   nounsErrors() {
     return [{
       //  ---------------------forms errors on y level ------------------------
-      word: [' ', [Validators.maxLength]],
+      word: [' ', [Validators.required], [Validators.maxLength]],
       forms: this.fb.array([
         this.fb.control('')
       ]),
@@ -187,7 +208,7 @@ export class AddContextpacksComponent implements OnInit {
   adjectivesErrors() {
     return [{
       //  ---------------------forms errors on y level ------------------------
-      word: [' ', [Validators.maxLength]],
+      word: [' ', [Validators.required], [Validators.maxLength]],
       forms: this.fb.array([
         this.fb.control('')
       ]),
@@ -197,7 +218,7 @@ export class AddContextpacksComponent implements OnInit {
   verbsErrors() {
     return [{
       //  ---------------------forms errors on y level ------------------------
-      word: [' ', [Validators.maxLength]],
+      word: [' ', [Validators.required], [Validators.maxLength]],
       forms: this.fb.array([
         this.fb.control('')
       ]),
@@ -207,13 +228,14 @@ export class AddContextpacksComponent implements OnInit {
   miscErrors() {
     return [{
       //  ---------------------forms errors on y level ------------------------
-      word: [' ', [Validators.maxLength]],
+      word: [' ', [Validators.required], [Validators.maxLength]],
       forms: this.fb.array([
         this.fb.control('')
       ]),
 
     }];
   }
+
   // form validation
   validateForm() {
     this.validateWordlists();
@@ -222,30 +244,31 @@ export class AddContextpacksComponent implements OnInit {
     const wordlistsA = this.contextPackForm.controls.wordlists as FormArray;
     // console.log(XsA.value);
     this.formErrors.wordlists = [];
+    this.formErrors.nouns= [];
     let x = 1;
     while (x <= wordlistsA.length) {
       this.formErrors.wordlists.push({
         name: [' ', [Validators.required], [Validators.maxLength]],
         nouns: [{
-          word: [' ', [Validators.maxLength]],
+          word: [' ', [Validators.required], [Validators.maxLength]],
           forms: this.fb.array([
             this.fb.control('')
           ]),
         }],
         verbs:[{
-          word: [' ', [Validators.maxLength]],
-          forms: this.fb.array([
+          word: [' ', [Validators.required], [Validators.maxLength]],
+          forms:this.fb.array([
             this.fb.control('')
           ]),
         }],
         adjectives:[{
-          word: [' ', [Validators.maxLength]],
+          word: [' ', [Validators.required], [Validators.maxLength]],
           forms: this.fb.array([
             this.fb.control('')
           ]),
         }],
         misc:[{
-          word: [' ', [Validators.maxLength]],
+          word: [' ', [Validators.required], [Validators.maxLength]],
           forms: this.fb.array([
             this.fb.control('')
           ]),
