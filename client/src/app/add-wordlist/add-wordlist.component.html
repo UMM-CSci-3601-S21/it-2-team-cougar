@@ -1,12 +1,15 @@
 <mat-card>
   <h1>Add WordList</h1>
-  <mat-form-field class="title">
-    <mat-label>WordList Name</mat-label>
-    <input matInput name="name" placeholder="name">
-  </mat-form-field>
   <div>
+    <mat-label>WordList Name: </mat-label>
+    <mat-form-field class="title">
+      <input matInput name="name">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-label>Enabled: </mat-label>
     <mat-form-field appearance="fill">
-      <mat-label>Enabled</mat-label>
+      <mat-label>Enabled:</mat-label>
       <mat-select required formControlName="enabled">
         <mat-option value="true">True</mat-option>
         <mat-option value="false">False</mat-option>
