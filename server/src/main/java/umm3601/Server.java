@@ -63,6 +63,9 @@ public class Server {
     server.get("/api/contextpacks/:id", contextPackController::getContextPack);
 
 
+    server.get("/api/contextpacks/:id", contextPackController::editContextPackName);
+
+
     server.post("/api/contextpacks", contextPackController::addNewContextPack);
 
 

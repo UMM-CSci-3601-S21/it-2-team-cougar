@@ -6,11 +6,12 @@ import static com.mongodb.client.model.Filters.and;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.ImmutableMap;
 
 import com.mongodb.client.MongoDatabase;
-
+import com.mongodb.client.model.Updates;
 
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -34,6 +35,8 @@ public class ContextPackController {
   }
 
 
+
+
   public void getContextPack(Context ctx) {
     String id = ctx.pathParam("id");
     ContextPack contextpack;
@@ -49,6 +52,7 @@ public class ContextPackController {
       ctx.json(contextpack);
     }
   }
+
 
   public void getContextPacks(Context ctx){
 
@@ -69,6 +73,18 @@ public class ContextPackController {
       ctx.status(201);
       ctx.json(ImmutableMap.of("id", newPack._id));
 
+  }
+
+  public void editContextPackName(Context ctx) {
+    String name = ctx.pathParam("name");
+    ContextPack contextPack = contextPackCollection.findOneById(name);
+
+    contextPack.name = name;
+  }
+
+  public void getWordlistByName(Context ctx){
+    String id = ctx.pathParam("id");
+    String name = ctx.pathParam("name");
   }
 
   public void updateContextPack(ContextPack contextPack) {
