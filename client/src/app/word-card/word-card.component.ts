@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ContextPack, Word, Wordlist } from '../contextpacks/contextpack';
 
 @Component({
@@ -12,9 +12,16 @@ export class WordCardComponent implements OnInit {
   @Input() wordlist: Wordlist;
   @Input() word: Word;
 
+  @Output() delete = new EventEmitter();
+
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.word);
+  }
+
+  deleteWord(){
+    this.delete.emit();
   }
 
 }

@@ -1,8 +1,10 @@
-export interface Word{
+export class Word{
   word?: string;
   forms?: string[];
+
+  constructor(word: string,forms: string[],type?: string){}
 }
-export interface Wordlist{
+export class Wordlist{
   name?: string;
   enabled?: boolean;
   nouns?: Word[];
@@ -11,7 +13,7 @@ export interface Wordlist{
   misc?: Word[];
 }
 
-export interface ContextPack {
+export class ContextPack {
   _id: string;
   name: string;
   icon?: string;
