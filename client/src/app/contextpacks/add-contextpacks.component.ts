@@ -232,9 +232,24 @@ export class AddContextpacksComponent implements OnInit {
             this.fb.control('')
           ]),
         }],
-        verbs:[],
-        adjectives:[],
-        misc:[]
+        verbs:[{
+          word: [' ', [Validators.maxLength]],
+          forms: this.fb.array([
+            this.fb.control('')
+          ]),
+        }],
+        adjectives:[{
+          word: [' ', [Validators.maxLength]],
+          forms: this.fb.array([
+            this.fb.control('')
+          ]),
+        }],
+        misc:[{
+          word: [' ', [Validators.maxLength]],
+          forms: this.fb.array([
+            this.fb.control('')
+          ]),
+        }],
       });
       x++;
     }
