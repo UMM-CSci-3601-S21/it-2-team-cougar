@@ -71,6 +71,10 @@ public class ContextPackController {
 
   }
 
+  public void updateContextPack(ContextPack contextPack) {
+    contextPackCollection.replaceOne(eq("name", contextPack.name), contextPack);
+  }
+
 
 
 

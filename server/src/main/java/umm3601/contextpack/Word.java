@@ -8,6 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 public class Word {
   public String word;
-  public ArrayList<String> forms;
+  public String[] forms;
 }
 

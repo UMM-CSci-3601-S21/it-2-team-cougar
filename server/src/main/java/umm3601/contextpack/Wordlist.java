@@ -5,10 +5,10 @@ import java.util.ArrayList;
 public class Wordlist {
   public String name;
   public boolean enabled;
-  public ArrayList<Word> nouns;
-  public ArrayList<Word> adjectives;
-  public ArrayList<Word> verbs;
-  public ArrayList<Word> misc;
+  public Word[] nouns;
+  public Word[] adjectives;
+  public Word[] verbs;
+  public Word[] misc;
 
 }
 
