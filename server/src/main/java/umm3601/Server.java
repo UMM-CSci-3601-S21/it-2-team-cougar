@@ -63,10 +63,22 @@ public class Server {
     server.get("/api/contextpacks/:id", contextPackController::getContextPack);
 
 
-    server.get("/api/contextpacks/:id", contextPackController::editContextPackName);
+    server.put("/api/contextpacks/:id", contextPackController::editContextPackName);
 
 
     server.post("/api/contextpacks", contextPackController::addNewContextPack);
+
+
+    server.get("/api/contextpacks/:id", contextPackController::getWordlists);
+
+
+    server.put("/api/contextpacks/:id", contextPackController::editWordList);
+
+
+    server.get("/api/contextpacks/:id", contextPackController::getWordList);
+
+
+    server.post("/api/contextpacks/:id/addwordlist", contextPackController::addWordList);
 
 
     server.exception(Exception.class, (e, ctx) -> {
