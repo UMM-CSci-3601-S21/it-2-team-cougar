@@ -501,7 +501,9 @@ public class ContextPackControllerSpec {
   @Test
   public void addNewWordlist(){
 
-    String testWordList = "{\n\"name\":\"birthday21\",\n\"enabled\":true,\n\"nouns\":[\n{\n\"word\":\"somestuff\",\n\"forms\":[\n\"cake\",\n\"cakes\"\n]\n}\n],\n\"verbs\":[\n{\n\"word\":\"blow\",\n\"forms\":[\n\"blow\",\n\"blows\",\n\"blew\",\n\"blown\",\n\"blowing\"\n]\n}\n],\n\"adjectives\":[\n{\n\"word\":\"fun\",\n\"forms\":[\n\"fun\"\n]\n}\n],\n\"misc\":[]\n}";
+    String testWordList = "{" + "\"name\": \"Test\"," + "\"enabled\": true," + "\"nouns\": []," + "\"verbs\": []," + "\"adjectives\": []," + "\"misc\": []" + "}";
+
+    String format = "Document{{name=Test, enabled=true, nouns=[], adjectives=[], verbs=[], misc=[]}}";
 
     String IdTest = testID.toHexString();
 
@@ -521,7 +523,7 @@ public class ContextPackControllerSpec {
 
     String ctxWrdListAdded = ctxWrdList.toString();
 
-    System.out.println(ctxWrdListAdded);
+    assertTrue(ctxWrdListAdded.contains(format));
 
   }
 }

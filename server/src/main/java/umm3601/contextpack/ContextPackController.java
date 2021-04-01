@@ -87,6 +87,14 @@ public class ContextPackController {
     contextPack.name = name;
   }
 
+  public void editContextPackIcon(Context ctx) {
+    String id = ctx.pathParam("id");
+    String icon = ctx.pathParam("icon");
+    ContextPack contextPack = contextPackCollection.findOneById(id);
+
+    contextPack.icon = icon;
+  }
+
   public void updateContextPack(ContextPack contextPack) {
     contextPackCollection.replaceOne(eq("name", contextPack.name), contextPack);
   }
