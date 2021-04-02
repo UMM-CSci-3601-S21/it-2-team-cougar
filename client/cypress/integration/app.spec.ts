@@ -5,8 +5,8 @@ const page = new AppPage();
 describe('App', () => {
   beforeEach(() => page.navigateTo());
 
-  it('Should have the correct title', () => {
-    page.getAppTitle().should('contain', 'Word River');
+  it('Verifies the title logo', () => {
+      cy.get('.app-logo').should('be.visible');
   });
 
   it('The sidenav should open, navigate to "Context Packs" and back to "Home"', () => {
