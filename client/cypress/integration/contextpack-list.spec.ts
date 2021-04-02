@@ -90,16 +90,11 @@ describe('Contextpack list', () => {
     cy.get('.contextpack-download-button').should('have.text', 'download');
   });
 
-  it('Should click view info and see all the nouns and verbs', () => {
+  it('Should click view info and see name and status', () => {
     page.clickViewInfo(page.getContextpackCards().first());
 
     cy.get('.contextpack-card-name').should('have.text', 'Farm');
     cy.get('.contextpack-card-enabled').should('have.text', 'Enabled: true');
-    cy.get('.contextpack-card-wordlists').should('contain.text', 'goat, goats, sheep, cat, cats, dog, '
-    + 'dogs, cow, cows, pig, pigs, chicken, chickens, duck, ducks, llama, llamas');
-    cy.get('.contextpack-card-wordlists').should('contain.text', 'moo, moos, mooed, mooing, oink, oinks, '
-    + 'oinked, oinking, cluck, clucks, clucking, clucked, baa, baas, baaed, baaing, meow, meows, meowing, '
-    + 'meowed, bark, barks, barked, barking');
   });
 
   it('Should click view info and check for the number of wordlists', () => {
