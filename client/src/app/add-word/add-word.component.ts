@@ -1,5 +1,6 @@
 import { FnParam } from '@angular/compiler/src/output/output_ast';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add-word',
@@ -9,6 +10,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class AddWordComponent implements OnInit {
   @Output() addWord = new EventEmitter();
 
+  id: string;
+  name: string;
   forms = [];
   wordName = '';
   finished = false;
@@ -19,7 +22,7 @@ export class AddWordComponent implements OnInit {
   valid: boolean;
 
 
-  constructor() { }
+  constructor(private router: ActivatedRoute) { }
 
   check() {
     if (this.wordName && this.type) {
@@ -31,6 +34,13 @@ export class AddWordComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.router.paramMap.subscribe((pmap) => {
+      this.id = pmap ? pmap.get('id') : '';
+      this.name = pmap ? pmap.get('name') : '';
+    });
+    console.log(this.id);
+    console.log(this.name);
+
   }
 
   add(val) {
