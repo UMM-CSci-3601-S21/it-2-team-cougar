@@ -4,7 +4,7 @@ import static com.mongodb.client.model.Filters.eq;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -253,6 +253,7 @@ public class ContextPackControllerSpec {
     });
 
   }
+
   @Test
   public void AddNewInvalidContextPackEmptyListTopic() throws IOException {
     String test = "{"
@@ -291,48 +292,34 @@ public class ContextPackControllerSpec {
     Document addedPack = db.getCollection("contextpacks").find(eq("_id", new ObjectId(id))).first();
     assertNotNull(addedPack);
     assertEquals("no topic wordlist pack", addedPack.getString("name"));
-    assertNotNull(addedPack);
 
   }
+
   @Test
   public void AddNewInvalidContextPackEmptyListStatus() throws IOException {
     String test = "{"
-    + "\"name\": \"no status wordlist pack\","
+    + "\"name\": \"no wl status\","
     + "\"icon\": \"eye.png\","
     + "\"enabled\": true,"
     + "\"wordlist\":"
     + "{"
-    + "\"topic\": \"houses\","
+    + "\"topic\": \"no wl status\","
     + "\"enabled\": ,"
     + "\"nouns\": [],"
     + "\"adjectives\": [],"
     + "\"verbs\": [],"
     + "\"misc\": []"
     + "}}"
-  ;
+    ;
 
     mockReq.setBodyContent(test);
     mockReq.setMethod("POST");
 
     Context ctx = ContextUtil.init(mockReq, mockRes, "api/contextpacks");
 
-    contextPackController.addNewContextPack(ctx);
-    assertEquals(201, mockRes.getStatus());
-
-    String result = ctx.resultString();
-    String id = jsonMapper.readValue(result, ObjectNode.class).get("id").asText();
-
-    assertNotEquals("", id);
-    System.out.println(id);
-    System.out.println(result);
-
-    assertEquals(1, db.getCollection("contextpacks").countDocuments(eq("_id", new ObjectId(id))));
-
-
-    Document addedPack = db.getCollection("contextpacks").find(eq("_id", new ObjectId(id))).first();
-    assertNotNull(addedPack);
-    assertEquals("no status wordlist pack", addedPack.getString("name"));
-    assertNotNull(addedPack);
+    assertThrows(BadRequestResponse.class, () -> {
+      contextPackController.addNewContextPack(ctx);
+    });
 
   }
 
@@ -390,11 +377,13 @@ public class ContextPackControllerSpec {
 
   }
   @Test
-  public void AddNewEmptyContextPack() throws IOException {
+  public void AddNewContextPackWithNoWordlists() throws IOException {
     String test = "{"
     + "\"name\": \"empty pack\","
     + "\"icon\": \"eye.png\","
     + "\"enabled\": true,"
+    + "\"wordlist\":"
+    + "{}}"
     ;
 
     mockReq.setBodyContent(test);
@@ -418,8 +407,7 @@ public class ContextPackControllerSpec {
     Document addedPack = db.getCollection("contextpacks").find(eq("_id", new ObjectId(id))).first();
     assertNotNull(addedPack);
     assertEquals("empty pack", addedPack.getString("name"));
-    assertNotNull(addedPack);
-
+    assertNull(addedPack.getString("wordlist"));
   }
   @Test
   public void AddNewContextPackWithEmptyList() throws IOException {
