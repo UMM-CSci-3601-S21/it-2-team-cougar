@@ -1,14 +1,20 @@
 <mat-card>
   <h1>Add a Word</h1>
   <div>
-    <mat-label>Add Word Name: </mat-label>
+    <mat-label>Add a Word: </mat-label>
     <mat-form-field class="title">
       <mat-label>Word Name</mat-label>
-      <input matInput name="name">
+      <input matInput (input)="check()" name="name">
     </mat-form-field>
   </div>
   <div>
-    <mat-label>Add Forms:</mat-label>
+    <button *ngIf="!added" (click)="add('')" mat-raised-button class="add-form-btn" style="margin-bottom: 40px;"
+      color="accent">Add a word form</button>
+    <app-word-form class="form_item"  *ngFor="let i of forms" (form)="add($event)"></app-word-form>
   </div>
-  <button>Add Word</button>
+  <div class="word-forms">
+    <button style="margin-top: 0px;" data-test="confirmAddWordButton" [disabled]="!finished" (click)="save()"
+      mat-raised-button class="add-word-btn" color="primary">Add
+      Word</button>
+  </div>
 </mat-card>

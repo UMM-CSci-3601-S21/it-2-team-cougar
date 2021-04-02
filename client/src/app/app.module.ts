@@ -38,6 +38,7 @@ import { WordCardComponent } from './word-card/word-card.component';
 import { EditContextpackNameComponent } from './edit-contextpack-name/edit-contextpack-name.component';
 import { AddWordlistComponent } from './add-wordlist/add-wordlist.component';
 import { AddWordComponent } from './add-word/add-word.component';
+import { WordFormComponent } from './word-form/word-form.component';
 
 
 const MATERIAL_MODULES: any[] = [
@@ -73,6 +74,7 @@ const MATERIAL_MODULES: any[] = [
     EditContextpackNameComponent,
     AddWordlistComponent,
     AddWordComponent,
+    WordFormComponent,
 
   ],
   imports: [

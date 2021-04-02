@@ -7,12 +7,21 @@
         <mat-label>Edit Word List Name</mat-label>
         <input matInput name="name" [(ngModel)]="name">
       </mat-form-field>
-      <button class="save-btn" (click)="save()">Save</button>
+      <button class="save-btn" (click)="saveName()">Save</button>
     </ng-template>
-    <button (click)="change()" *ngIf="editshow">Edit Name</button>
+    <button (click)="changeName()" *ngIf="editshow">Edit Name</button>
+    <button (click)="changeIcon()" *ngIf="editshowicon">Edit Icon</button>
     <button [routerLink]="['/contextpacks', this.contextpack._id, 'addwordlist']">Add WordList</button>
     <mat-card-subtitle class="contextpack-card-enabled">Enabled: {{ this.contextpack.enabled }}</mat-card-subtitle>
-    <mat-card-subtitle class="contextpack-card-icon">Icon: {{ this.contextpack.icon }}</mat-card-subtitle>
+    <mat-card-subtitle class="contextpack-card-icon" *ngIf="editshowicon == true; else editicon">Icon: {{ this.contextpack.icon }}</mat-card-subtitle>
+
+    <ng-template #editicon>
+      <mat-form-field>
+        <mat-label>Edit Word List Icon</mat-label>
+        <input matInput name="name" [(ngModel)]="icon">
+      </mat-form-field>
+      <button class="save-btn" (click)="saveIcon()">Save</button>
+    </ng-template>
 
   </mat-card-header>
   <mat-card-content *ngIf="!this.simple">
@@ -38,7 +47,7 @@
 
     <div *ngIf="selected === 'true'; else templateWords">
       <div *ngFor="let wordlists of contextpack.wordlists; let index = index">
-        <app-wordlist-card class="wordlist-card" [wordlist]="this.contextpack.wordlists[index]"></app-wordlist-card>
+        <app-wordlist-card class="wordlist-card" [contextpack]="this.contextpack" [wordlist]="this.contextpack.wordlists[index]"></app-wordlist-card>
       </div>
     </div>
 

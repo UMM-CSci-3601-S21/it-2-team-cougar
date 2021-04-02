@@ -11,10 +11,19 @@ export class WordlistCardComponent implements OnInit {
   @Input() contextpack: ContextPack;
   @Input() wordlist: Wordlist;
   @Input() simple ? = false;
+
+
+
   words;
+  wordType: string;
   types: string[];
   editshow= true;
   name = '';
+
+  noun = 'Noun';
+  verb = 'Verb';
+  adj = 'Adjective';
+  misc = 'Misc Word';
 
   constructor() { }
 
@@ -29,6 +38,8 @@ export class WordlistCardComponent implements OnInit {
     this.wordlist.name = this.name;
     this.editshow = !this.editshow;
   }
+
+
 
 
   getAllWords() {
@@ -66,7 +77,8 @@ export class WordlistCardComponent implements OnInit {
         this.words.splice(i, 1);
       }
     }
-  }
+
+}
 
 
 

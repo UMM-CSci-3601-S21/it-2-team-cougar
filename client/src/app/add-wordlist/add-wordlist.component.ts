@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ContextPack, Wordlist, WordRole } from 'src/app/contextpacks/contextpack';
 
 @Component({
@@ -8,11 +9,19 @@ import { ContextPack, Wordlist, WordRole } from 'src/app/contextpacks/contextpac
 })
 export class AddWordlistComponent implements OnInit {
 
+  @Input() contextpack: ContextPack;
+
+  id = '';
+
   wordList: Wordlist = {name:'',enabled:false,nouns:[],verbs:[],adjectives:[],misc:[]};
 
-  constructor() { }
+  constructor(private router: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.router.paramMap.subscribe((pmap) => {
+      this.id = pmap ? pmap.get('id') : '';
+    });
+    console.log(this.id);
   }
 
 }
