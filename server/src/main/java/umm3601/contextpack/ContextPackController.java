@@ -103,22 +103,29 @@ public class ContextPackController {
 
   public void getWordList(Context ctx) {
 
-    String id = ctx.pathParam("id");
     String name = ctx.pathParam("name");
+
+    String id = ctx.pathParam("id");
+
     ContextPack contextPack;
     Wordlist wordlist = null;
 
     contextPack = contextPackCollection.findOneById(id);
 
     for (Wordlist list : contextPack.wordlists) {
+
       if (list.name.equals(name)) {
+
         wordlist = list;
         break;
       }
     }
     if (wordlist == null) {
-      throw new NotFoundResponse("The requested word list was not found");
+
+      throw new NotFoundResponse("The requested WordList was not absent");
+
     } else {
+
       ctx.json(wordlist);
     }
   }
@@ -137,16 +144,20 @@ public class ContextPackController {
   }
 
   public void editWordList(Context ctx) {
+
     String id = ctx.pathParam("id");
     String wordListName = ctx.pathParam("name");
 
     ContextPack contextPack = contextPackCollection.findOneById(id);
     Wordlist newList = ctx.bodyValidator(Wordlist.class).get();
     for (int i = 0; i < contextPack.wordlists.size(); i++) {
+
       Wordlist theWordList = contextPack.wordlists.get(i);
       if (theWordList.name.equals(wordListName)) {
+
         contextPackCollection.updateById(id, Updates.pull("wordlists", theWordList));
         contextPackCollection.updateById(id, Updates.push("wordlists", newList));
+
       }
     }
   }

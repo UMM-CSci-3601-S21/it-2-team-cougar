@@ -514,6 +514,76 @@ public class ContextPackControllerSpec {
     assertTrue(ctxWrdListAdded.contains(format));
 
   }
+
+  @Test
+  public void editNewWordlist(){
+
+    String testWordList = "{" + "\"name\": \"Test\"," + "\"enabled\": true," + "\"nouns\": []," + "\"verbs\": []," + "\"adjectives\": []," + "\"misc\": []" + "}";
+
+    String format = "Document{{name=Test, enabled=true, nouns=[], adjectives=[], verbs=[], misc=[]}}";
+
+    String IdTest = testID.toHexString();
+
+    mockReq.setBodyContent(testWordList);
+    mockReq.setMethod("POST");
+
+    ObjectId Id = testID;
+
+    Context ctx = ContextUtil.init(mockReq, mockRes, "/api/contextpacks/:id", ImmutableMap.of("id", IdTest, "name", "Test"));
+
+    contextPackController.addWordList(ctx);
+    contextPackController.editWordList(ctx);
+
+    assertEquals(201, mockRes.getStatus());
+    Document cxtPack = db.getCollection("contextpacks").find(Filters.eq("_id", Id)).first();
+
+    ArrayList<Wordlist> ctxWrdList = (ArrayList<Wordlist>) cxtPack.get("wordlists");
+
+    String ctxWrdListAdded = ctxWrdList.toString();
+
+    assertTrue(ctxWrdListAdded.contains(format));
+
+  }
+
+  @Test
+  public void getWordlist(){
+
+    String testContextPackID = testID.toHexString();
+
+    Context ctx = ContextUtil.init(mockReq, mockRes, "api/contextpacks/:id" , ImmutableMap.of("id", testContextPackID, "name", "dogs"));
+    contextPackController.getWordList(ctx);
+    assertEquals(200, mockRes.getStatus());
+
+    String result = ctx.resultString();
+    Wordlist resultPack = JavalinJson.fromJson(result, Wordlist.class);
+
+    assertEquals(resultPack.name, "dogs");
+
+
+  }
+
+  @Test
+  public void getAbsentWordList(){
+
+    String testContextPackID = testID.toHexString();
+
+    Context ctx = ContextUtil.init(mockReq, mockRes, "api/contextpacks/:id" , ImmutableMap.of("id", testContextPackID, "name", "INVALID_NAME"));
+    assertThrows(NotFoundResponse.class, () -> {
+      contextPackController.getWordList(ctx);
+    });
+  }
+
+
+  @Test
+  public void getWordlists(){
+
+    String testContextPackID = testID.toHexString();
+
+    Context ctx = ContextUtil.init(mockReq, mockRes, "api/contextpacks/:id" , ImmutableMap.of("id", testContextPackID));
+    contextPackController.getWordlists(ctx);
+    assertEquals(200, mockRes.getStatus());
+
+  }
 }
 
 
