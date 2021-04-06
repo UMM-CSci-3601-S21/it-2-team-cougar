@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ContextPack, Wordlist, WordRole } from './contextpack';
+import { ContextPackService } from './contextpack.service';
 
 
 @Component({
@@ -20,7 +21,10 @@ export class ContextPackCardComponent implements OnInit {
   icon = '';
   wordcount = 0;
 
-  constructor() { }
+
+
+
+  constructor(private contextPackService: ContextPackService) { }
 
   ngOnInit(): void {
 
@@ -122,6 +126,7 @@ export class ContextPackCardComponent implements OnInit {
   saveName() {
     this.contextpack.name = this.name;
     this.editshow = !this.editshow;
+    this.contextPackService.editContextPackName(this.contextpack.name,this.contextpack._id).subscribe();
   }
 
   saveIcon() {

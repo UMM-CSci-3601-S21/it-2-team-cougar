@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { ContextPack, Word, Wordlist, WordRole } from 'src/app/contextpacks/contextpack';
+import { ContextPackService } from '../contextpacks/contextpack.service';
 
 @Component({
   selector: 'app-wordlist-card',
@@ -11,6 +14,8 @@ export class WordlistCardComponent implements OnInit {
   @Input() contextpack: ContextPack;
   @Input() wordlist: Wordlist;
   @Input() simple ? = false;
+  getUserSub: Subscription;
+  originalName: string;
 
 
 
@@ -19,24 +24,32 @@ export class WordlistCardComponent implements OnInit {
   types: string[];
   editshow= true;
   name = '';
+  id = '';
 
   noun = 'Noun';
   verb = 'Verb';
   adj = 'Adjective';
   misc = 'Misc Word';
 
-  constructor() { }
+  constructor(private router: ActivatedRoute, private contextPackService: ContextPackService) { }
 
   ngOnInit(): void {
+    this.router.paramMap.subscribe((pmap) => {
+      this.id = pmap ? pmap.get('id') : '';
+      this.originalName = this.wordlist.name;
+      console.log(this.originalName);
+    });
   }
 
   change(){
     this.editshow = !this.editshow;
   }
 
+
   save(){
     this.wordlist.name = this.name;
     this.editshow = !this.editshow;
+    this.contextPackService.editWordList(this.wordlist.name, this.wordlist, this.id).subscribe();
   }
 
 

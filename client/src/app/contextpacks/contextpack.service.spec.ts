@@ -135,5 +135,15 @@ describe('Context Pack service: ', () => {
 
     req.flush({id: 'testid'});
   });
+
+  it('edit contextpack name', () => {
+
+    contextpackService.editContextPackName('new name', testContextPacks[0]._id);
+
+    expect(testContextPacks[0].name).toBe('new name');
+
+  });
+
+
 });
 

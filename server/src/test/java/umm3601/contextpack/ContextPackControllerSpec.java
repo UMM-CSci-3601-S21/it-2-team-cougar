@@ -574,6 +574,7 @@ public class ContextPackControllerSpec {
   }
 
 
+
   @Test
   public void getWordlists(){
 
@@ -584,6 +585,19 @@ public class ContextPackControllerSpec {
     assertEquals(200, mockRes.getStatus());
 
   }
+
+  @Test
+  public void editContextPackName(){
+
+    String testContextPackID = testID.toHexString();
+
+    Context ctx = ContextUtil.init(mockReq, mockRes, "api/contextpacks/:id" , ImmutableMap.of("id", testContextPackID));
+    contextPackController.getWordlists(ctx);
+    assertEquals(200, mockRes.getStatus());
+
+  }
+
+
 }
 
 

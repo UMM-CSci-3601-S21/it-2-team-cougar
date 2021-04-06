@@ -131,7 +131,7 @@ public class ContextPackController {
   }
 
 
-  @SuppressWarnings("all")
+
   public void addWordList(Context ctx){
 
     String id = ctx.pathParam("id");
