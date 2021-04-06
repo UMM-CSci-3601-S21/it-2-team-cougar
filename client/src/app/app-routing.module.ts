@@ -6,6 +6,7 @@ import { ContextPackInfoComponent } from './contextpacks/contextpack-info.compon
 import { AddContextpacksComponent } from './contextpacks/add-contextpacks.component';
 import { AddWordlistComponent } from './add-wordlist/add-wordlist.component';
 import { AddWordComponent } from './add-word/add-word.component';
+import { WordlistInfoComponent } from './wordlist-info/wordlist-info.component';
 
 
 const routes: Routes = [
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: 'contextpacks/:id', component: ContextPackInfoComponent},
   {path: 'contextpacks/:id/addwordlist', component: AddWordlistComponent},
   {path: 'edit', component: AddContextpacksComponent},
-  {path: 'contextpacks/:id/:name/addword', component: AddWordComponent}
+  {path: 'contextpacks/:id/:name/addword', component: AddWordComponent},
+  {path: 'contextpacks/:id/:name', component: WordlistInfoComponent}
 ];
 
 @NgModule({

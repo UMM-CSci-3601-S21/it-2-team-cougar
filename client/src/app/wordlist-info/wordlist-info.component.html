@@ -1,2 +1,53 @@
-<h1>Wordlist Name</h1>
-<app-word-card></app-word-card>
+<mat-card class="wordList-card">
+  <div>
+    <div class="card-header">
+
+        <h1 class="wordList-name">{{this.wordlist.name}}</h1><button >Edit Name</button>
+
+      <ng-template #editname>
+        <mat-form-field class="title">
+          <mat-label>Edit Word List Name</mat-label>
+          <input matInput name="name" >
+        </mat-form-field>
+        <button >Save</button>
+      </ng-template>
+    </div>
+  </div>
+
+  <p class="enabled">{{this.wordlist.enabled ? 'Enabled' : 'Disabled'}}</p>
+
+  <p><strong>Amount of Words in List:</strong></p>
+  <mat-card-subtitle>{{this.wordlist.nouns.length + this.wordlist.verbs.length + this.wordlist.adjectives.length + this.wordlist.misc.length }}</mat-card-subtitle>
+
+  <mat-card-content>
+    <div class= "list-detail">
+        <div class="nounsList">
+            <!--display:flex-->
+            <p  class="desc title-section" element="nouns"><strong>Nouns: </strong></p>
+            <p  color="primary" class="bubbleNoun" >
+
+          </div>
+          <div class="verbsList">
+            <!--display:flex-->
+            <p  class="desc title-section" element="verbs"><strong>Verbs: </strong></p>
+            <p  color="primary" class="bubbleVerb" >
+
+          </div>
+          <div class="adjectivesList">
+            <!--display:flex-->
+            <p  class="desc title-section" element="adjectives"><strong>Adjectives: </strong></p>
+            <p  color="primary" class="bubbleAdj" >
+
+
+          </div>
+          <div class="miscList">
+            <!--display:flex-->
+            <p  class="desc title-section" element="misc"><strong>Misc: </strong></p>
+            <p  color="primary" class="bubbleMisc" >
+
+
+          </div>
+    </div>
+  </mat-card-content>
+
+</mat-card>

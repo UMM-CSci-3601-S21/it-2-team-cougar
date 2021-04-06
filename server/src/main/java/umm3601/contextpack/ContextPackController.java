@@ -79,24 +79,19 @@ public class ContextPackController {
 
   }
 
-  public void editContextPackName(Context ctx) {
+  public void editContextPack(Context ctx) {
+
     String id = ctx.pathParam("id");
-    String name = ctx.pathParam("name");
-    ContextPack contextPack = contextPackCollection.findOneById(id);
+    ContextPack newContextPack = ctx.bodyValidator(ContextPack.class)
+    .check(pack -> pack.name != null)
+    .get();
 
-    contextPack.name = name;
-  }
+    contextPackCollection.replaceOne(eq("id", id), newContextPack);
 
-  public void editContextPackIcon(Context ctx) {
-    String id = ctx.pathParam("id");
-    String icon = ctx.pathParam("icon");
-    ContextPack contextPack = contextPackCollection.findOneById(id);
-
-    contextPack.icon = icon;
   }
 
   public void updateContextPack(ContextPack contextPack) {
-    contextPackCollection.replaceOne(eq("name", contextPack.name), contextPack);
+    contextPackCollection.replaceOne(eq("id", contextPack._id), contextPack);
   }
 
   //Worldlist Functions:
@@ -174,13 +169,6 @@ public class ContextPackController {
 
     ctx.json(wordlists);
   }
-
-
-
-
-
-
-
 
 
 }

@@ -44,16 +44,16 @@ export class ContextPackService {
     return this.httpClient.post<{id: string}>(this.contextpackUrl, newPack).pipe(map(res => res.id));
   }
 
-  editContextPackName(name: string, id: string): Observable<ContextPack> {
-    return this.httpClient.put<ContextPack>(this.contextpackUrl + '/' + id, name).pipe(map(res => res));
+  editContextPack(ctxPack: ContextPack, id: string): Observable<ContextPack> {
+    return this.httpClient.put<ContextPack>(this.contextpackUrl + '/' + id, ctxPack).pipe(map(res => res));
   }
 
   editWordList(name: string, wordList: Wordlist, id: string): Observable<Wordlist> {
     return this.httpClient.put<Wordlist>(this.contextpackUrl + '/' + id, wordList).pipe(map(res => res));
   }
 
-  getWordListByName(word: string, id: string): Observable<Wordlist> {
-    return this.httpClient.get<Wordlist>(this.contextpackUrl + '/' + id + word);
+  getWordListByName(name: string, id: string): Observable<Wordlist> {
+    return this.httpClient.get<Wordlist>(this.contextpackUrl + '/' + id + '/' + name);
   }
 
   addWordList(newWordList: Wordlist, id: string) {

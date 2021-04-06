@@ -63,19 +63,16 @@ public class Server {
     server.get("/api/contextpacks/:id", contextPackController::getContextPack);
 
 
-    server.put("/api/contextpacks/:id", contextPackController::editContextPackName);
+    server.put("/api/contextpacks/:id", contextPackController::editContextPack);
 
 
     server.post("/api/contextpacks", contextPackController::addNewContextPack);
 
 
-    server.get("/api/contextpacks/:id", contextPackController::getWordlists);
+    server.put("/api/contextpacks/:id/:name", contextPackController::editWordList);
 
 
-    server.put("/api/contextpacks/:id", contextPackController::editWordList);
-
-
-    server.get("/api/contextpacks/:id", contextPackController::getWordList);
+    server.get("/api/contextpacks/:id/:name", contextPackController::getWordList);
 
 
     server.post("/api/contextpacks/:id/addwordlist", contextPackController::addWordList);

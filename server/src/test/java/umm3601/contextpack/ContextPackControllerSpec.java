@@ -586,14 +586,53 @@ public class ContextPackControllerSpec {
 
   }
 
+
+
   @Test
-  public void editContextPackName(){
+  public void editContextPack(){
 
-    String testContextPackID = testID.toHexString();
+    String test = "{"
+    + "\"name\": \"sight words\","
+    + "\"icon\": \"eye.png\","
+    + "\"enabled\": true,"
+    + "\"wordlist\":"
+      + "{"
+      + "\"topic\": \"goats\","
+      + "\"enabled\": true,"
+      + "\"nouns\": ["
+      + "{\"word\": \"boat\", \"forms\": [\"he\"]},"
+      + "{\"word\": \"she\", \"forms\": [\"he\"]}"
+      + "],"
+      + "\"adjectives\": ["
+      + "{\"word\": \"he\", \"forms\": [\"he\"]},"
+      + "{\"word\": \"he\", \"forms\": [\"he\"]}"
+      + "],"
+      + "\"verbs\": ["
+      + "{\"word\": \"he\", \"forms\": [\"he\"]},"
+      + "{\"word\": \"he\", \"forms\": [\"he\"]}"
+      + "],"
+      + "\"misc\": ["
+      + "{\"word\": \"duck\", \"forms\": [\"ducky\"]},"
+      + "{\"word\": \"he\", \"forms\": [\"he\"]}"
+      + "]"
+      + "}}"
+    ;
 
-    Context ctx = ContextUtil.init(mockReq, mockRes, "api/contextpacks/:id" , ImmutableMap.of("id", testContextPackID));
-    contextPackController.getWordlists(ctx);
-    assertEquals(200, mockRes.getStatus());
+  mockReq.setBodyContent(test);
+  mockReq.setMethod("PUT");
+
+  String testContextPackID = testID.toHexString();
+
+  Context ctx = ContextUtil.init(mockReq, mockRes, "api/contextpacks/:id" , ImmutableMap.of("id", testContextPackID));
+
+  contextPackController.editContextPack(ctx);
+
+  String result = ctx.resultString();
+  ContextPack resultPack = JavalinJson.fromJson(result, ContextPack.class);
+
+
+
+  assertEquals(resultPack.name, "sight words");
 
   }
 

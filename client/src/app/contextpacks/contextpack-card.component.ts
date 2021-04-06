@@ -126,7 +126,9 @@ export class ContextPackCardComponent implements OnInit {
   saveName() {
     this.contextpack.name = this.name;
     this.editshow = !this.editshow;
-    this.contextPackService.editContextPackName(this.contextpack.name,this.contextpack._id).subscribe();
+    console.log(this.contextpack.name);
+    this.contextPackService.editContextPack(this.contextpack,this.contextpack._id)
+    .subscribe();
   }
 
   saveIcon() {
