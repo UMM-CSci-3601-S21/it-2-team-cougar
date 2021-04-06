@@ -3,8 +3,8 @@
 <form [formGroup]="contextPackForm" (ngSubmit)="submitForm()" class="form">
   <mat-card class="add-contextpack-card">
     <mat-card-title class="add-pack-title">Create A New Context Pack</mat-card-title>
-    <mat-checkbox class="cp-enabled" [checked]="true" (change)="enable($event.checked)" color=primary>Enabled</mat-checkbox>
     <mat-card-content fxLayout="column">
+
     <mat-form-field>
       <mat-label>Pack Name</mat-label>
       <input matInput placeholder="Name" formControlName="name"
@@ -18,6 +18,18 @@
     </mat-form-field>
 
   <mat-form-field>
+    <mat-label>Enabled</mat-label>
+    <mat-select required formControlName="enabled">
+      <mat-option value="true">True</mat-option>
+      <mat-option value="false">False</mat-option>
+    </mat-select>
+    <mat-error *ngIf="contextPackForm.get('enabled').hasError('required')">You must make a selection</mat-error>
+    <mat-error *ngIf="contextPackForm.get('enabled').hasError('pattern') && !contextPackForm.get('enabled').hasError('required')">
+      Your selection is invalid
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
     <mat-label>Icon (optional)</mat-label>
     <input matInput placeholder="Icon" formControlName="icon">
   </mat-form-field>
@@ -27,8 +39,10 @@
 	<div formArrayName="wordlists">
 		<div *ngFor="let wordlists of contextPackForm['controls'].wordlists['controls']; let ix=index">
 			<div formGroupName="{{ix}}" class="wordlists">
-        <button class='remove-wl-btn' type="button" (click)="removeWordlists(ix)">Remove This Wordlist</button><br>
+        <button type="button" (click)="removeWordlists(ix)">Remove This Wordlist</button><br>
         <h1>Wordlist {{ix+1}}:</h1>
+        <label>
+          Wordlist Name:
           <mat-form-field>
             <mat-label>Wordlist Name</mat-label>
             <input matInput placeholder="Name" formControlName="name"
@@ -40,7 +54,22 @@
               </mat-error>
             </mat-error>
           </mat-form-field>
-          <mat-checkbox class="wl-enabled" [checked]="true" (change)="enable($event.checked)" color=primary>Enabled</mat-checkbox>
+        </label>
+        <label>
+          Enabled:
+          <mat-form-field>
+            <mat-label>Enabled</mat-label>
+            <mat-select required formControlName="enabled">
+              <mat-option value="true">True</mat-option>
+              <mat-option value="false">False</mat-option>
+            </mat-select>
+            <mat-error *ngIf="contextPackForm.get('enabled').hasError('required')">You must make a selection</mat-error>
+            <mat-error *ngIf="contextPackForm.get('enabled').hasError('pattern') && !contextPackForm.get('enabled').hasError('required')">
+              Your selection is invalid
+            </mat-error>
+          </mat-form-field>
+
+        </label>
 
 
 				<!-- Nouns -->
@@ -246,7 +275,7 @@
 </form>
     <div class="buttons-div">
 
-      <button class='add-cp-btn' type="submit" (click)="submitForm()"
+      <button class="add-cp-btn" type="submit" (click)="submitForm()"
         mat-button
         type="button"
         color="primary"
@@ -265,9 +294,8 @@
 
     >Download Json</button>
 
-    <br><button class='view-btn' matTooltip="View current Json" (click)="toggleShow()" type="checkbox" data-test="showJsonButton">Preview Json File</button>
+    <br><button class="view-btn" matTooltip="View current Json" (click)="toggleShow()" type="checkbox" data-test="showJsonButton">Preview Json File</button>
     <div *ngIf='isShown===true'>
 
 		<pre class="form-value" style="font-size:15px">{{ contextPackForm.value | json }}</pre>
   </div>
-

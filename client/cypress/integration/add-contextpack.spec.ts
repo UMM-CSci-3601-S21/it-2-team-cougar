@@ -158,6 +158,7 @@ describe('Add a Context pack', () => {
       }
     ]
     };
+
     page.addPack(pack);
 
     cy.url()

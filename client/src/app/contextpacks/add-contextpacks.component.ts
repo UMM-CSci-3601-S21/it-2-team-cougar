@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ContextPackService } from './contextpack.service';
 import { Router } from '@angular/router';
 import { ContextPackCardComponent } from './contextpack-card.component';
+import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 
 @Component({
   selector: 'app-add-contextpacks',
@@ -15,7 +16,7 @@ export class AddContextpacksComponent implements OnInit {
   contextPackForm: FormGroup;
   contextpackcard = new ContextPackCardComponent();
   isShown = false;
-  enabled: true;
+
   formErrors = {
     contextPacks: this.contextPacksErrors(),
     wordlists: this.wordlistsErrors(),
@@ -27,12 +28,16 @@ export class AddContextpacksComponent implements OnInit {
 
   validationMessages = {
     contextPacks: {
+      enabled: {
+        required: 'Must be true or false (check capitalization)',
+      },
       name: [
       {type: 'required', message: 'Name is required'},
       {type: 'maxlength', message: 'Name must be shorter than 50 characters'}
       ]
     },
     wordlists: {
+      enabled: [],
       name: [
         {type: 'required', message: 'Name is required'},
         {type: 'maxlength', message: 'Name must be shorter than 50 characters'}
@@ -42,44 +47,28 @@ export class AddContextpacksComponent implements OnInit {
         word: [
           {type: 'required', message: 'Noun must not be empty'},
           {type: 'maxlength', message: 'Noun must be shorter than 50 characters'}
-        ],
-        forms: [
-          {type: 'required', message: 'Form is required'},
-          {type: 'maxlength', message: 'Form must be shorter than 50 characters'}
-        ],
+        ]
       },
 
       adjectives: {
         word: [
           {type: 'required', message: 'Adjective must not be empty'},
           {type: 'maxlength', message: 'Adjective must be shorter than 50 characters'}
-        ],
-        forms: [
-          {type: 'required', message: 'Form is required'},
-          {type: 'maxlength', message: 'Form must be shorter than 50 characters'}
-        ],
+        ]
       },
 
       verbs: {
         word: [
           {type: 'maxlength', message: 'Verb must be shorter than 50 characters'},
           {type: 'required', message: 'Verb must not be empty'}
-        ],
-        forms: [
-          {type: 'required', message: 'Form is required'},
-          {type: 'maxlength', message: 'Form must be shorter than 50 characters'}
-        ],
+        ]
       },
 
       misc: {
         word: [
           {type: 'required', message: 'Misc must not be empty'},
           {type: 'maxlength', message: 'Misc must be shorter than 50 characters'}
-        ],
-        forms: [
-          {type: 'required', message: 'Form is required'},
-          {type: 'maxlength', message: 'Form must be shorter than 50 characters'}
-        ],
+        ]
       }
     }
   };
@@ -96,6 +85,10 @@ export class AddContextpacksComponent implements OnInit {
         Validators.required,
         Validators.maxLength(50),
       ])),
+      enabled: new FormControl('true', Validators.compose([
+        Validators.required,
+        Validators.pattern('^(true|false)'),
+      ])),
       icon: '',
       wordlists: this.fb.array([])
     });
@@ -108,6 +101,10 @@ export class AddContextpacksComponent implements OnInit {
       name: new FormControl('', Validators.compose([
         Validators.required,
         Validators.maxLength(50),
+      ])),
+      enabled: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('^(true|false)$'),
       ])),
       // ---------------------------------------------------------------------
       nouns: this.fb.array([]),
@@ -130,9 +127,7 @@ export class AddContextpacksComponent implements OnInit {
       ])
     });
   }
-  enable(val) {
-    this.enabled = val;
-  }
+
   addWordlist() {
     const control = this.contextPackForm.controls.wordlists as FormArray;
     control.push(this.initwordlist());
@@ -175,7 +170,7 @@ export class AddContextpacksComponent implements OnInit {
     return [{
       //  ---------------------forms errors on x level ------------------------
       name: [' ', [Validators.required], [Validators.maxLength]],
-
+      enabled: [' ',[Validators.required]],
       // ---------------------------------------------------------------------
       nouns: this.nounsErrors(),
       adjectives: this.adjectivesErrors(),
@@ -249,6 +244,7 @@ export class AddContextpacksComponent implements OnInit {
     while (x <= wordlistsA.length) {
       this.formErrors.wordlists.push({
         name: [' ', [Validators.required], [Validators.maxLength]],
+        enabled: [' ',[Validators.required]],
         nouns: [{
           word: [' ', [Validators.required], [Validators.maxLength]],
           forms: this.fb.array([
