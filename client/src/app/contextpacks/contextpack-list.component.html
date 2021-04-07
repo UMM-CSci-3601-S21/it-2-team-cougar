@@ -46,7 +46,12 @@
             <h3 mat-subheader>ContextPacks</h3>
             <a mat-list-item *ngFor="let contextpack of this.filteredContextpacks" [routerLink]="['/contextpacks', contextpack._id]" class="contextpack-list-item">
               <h3 matLine class="contextpack-list-name"> {{this.contextpack.name}} </h3>
-              <p matLine class="contextpack-list-enabled"> {{this.contextpack.enabled}} </p>
+              <div class="enabled" *ngIf="this.contextpack.enabled">
+                <mat-icon class="checkmark"> check_circle</mat-icon>
+              </div>
+              <div class="disabled" *ngIf="!this.contextpack.enabled">
+                <mat-icon class="red-x">highlight_off</mat-icon>
+              </div>
             </a>
           </mat-nav-list>
         </mat-card-content>

@@ -9,13 +9,17 @@ span.contextpack-card-wordlists{
 }
 .mat-card{
   background-color:white;
-
 }
 .contextpack-card-name{
   color:#01596e;
-
+}
+.checkmark{
+  color:green;
 }
 
+.disabled{
+  color:red;
+}
 
 span.contextpack-card-nouns{
   display: inline-block;
