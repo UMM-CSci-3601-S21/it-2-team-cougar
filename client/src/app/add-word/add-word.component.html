@@ -4,8 +4,23 @@
     <mat-label>Add a Word: </mat-label>
     <mat-form-field class="title">
       <mat-label>Word Name</mat-label>
-      <input matInput (input)="check()" name="name">
+      <input matInput (input)="check()" [(ngModel)]="wordName" name="name">
     </mat-form-field>
+  </div>
+  <div class="word-type">
+    <!--drop down list for word-types-->
+    <h4>Word Type</h4>
+    <mat-form-field appearance="fill">
+      <mat-label>Select a type</mat-label>
+      <mat-select (selectionChange)="check()" id="select" [(ngModel)]="type">
+        <mat-option>None</mat-option>
+        <mat-option value="nouns">Noun</mat-option>
+        <mat-option value="verbs">Verb</mat-option>
+        <mat-option value="adjectives">Adjective</mat-option>
+        <mat-option value="misc">Misc</mat-option>
+      </mat-select>
+    </mat-form-field>
+
   </div>
   <div>
     <button *ngIf="!added" (click)="add('')" mat-raised-button class="add-form-btn" style="margin-bottom: 40px;"

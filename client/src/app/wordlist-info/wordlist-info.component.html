@@ -25,7 +25,7 @@
 </mat-card>
 <div>
   <div class="left">
-    <app-add-word data-test="addWordButton"></app-add-word>
+    <app-add-word (addWord)="addWord($event)" data-test="addWordButton"></app-add-word>
   </div>
   <div class="right">
     <app-word-card class="wordcards" (delete)="deleteWord(i)" [word]="w" [type]="w.type ? w.type : types[i]"
