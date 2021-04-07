@@ -1,6 +1,4 @@
-import { event } from 'cypress/types/jquery';
 import {ContextPack} from 'src/app/contextpacks/contextpack';
-import { threadId } from 'worker_threads';
 
 export class AddPackPage {
   contextPack: ContextPack;

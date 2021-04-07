@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ContextPackService } from './contextpack.service';
 import { Router } from '@angular/router';
 import { ContextPackCardComponent } from './contextpack-card.component';
-import { ValueConverter } from '@angular/compiler/src/render3/view/template';
+
 
 @Component({
   selector: 'app-add-contextpacks',
