@@ -41,57 +41,7 @@ export class WordlistCardComponent implements OnInit {
     });
   }
 
-  change(){
-    this.editshow = !this.editshow;
-  }
 
-
-  save(){
-    this.wordlist.name = this.name;
-    this.editshow = !this.editshow;
-    this.contextPackService.editWordList(this.wordlist.name, this.wordlist, this.id).subscribe();
-  }
-
-
-
-
-  getAllWords() {
-    const temp: Word[] = [];
-    temp.push(...this.wordlist.nouns);
-    temp.push(...this.wordlist.verbs);
-    temp.push(...this.wordlist.adjectives);
-    temp.push(...this.wordlist.misc);
-    console.log(temp);
-    this.words = temp;
-    this.types = this.refreshTypes(temp);
-  }
-
-
-  refreshTypes(temp){
-    return temp.map(w =>
-      this.wordlist.nouns.includes(w) ? 'Noun' :
-        this.wordlist.verbs.includes(w) ? 'Verb' :
-          this.wordlist.adjectives.includes(w) ? 'Adjective' : 'Misc'
-    );
-  }
-
-
-
-  deleteWord(i: number) {
-    for (const current of
-      [this.wordlist.nouns,
-      this.wordlist.verbs,
-      this.wordlist.adjectives,
-      this.wordlist.misc]) {
-      console.log(current + ' ' + this.words[i]);
-
-      if (current.includes(this.words[i])) {
-        current.splice(current.indexOf(this.words[i]), 1);
-        this.words.splice(i, 1);
-      }
-    }
-
-}
 
 
 
