@@ -6,6 +6,7 @@ import { ContextPackService } from './contextpack.service';
 import { Router } from '@angular/router';
 import { ContextPackCardComponent } from './contextpack-card.component';
 
+
 @Component({
   selector: 'app-add-contextpacks',
   templateUrl: './add-contextpacks.component.html',
@@ -17,40 +18,57 @@ export class AddContextpacksComponent implements OnInit {
   isShown = false;
 
   formErrors = {
-    wordlists: this.wordlistsErrors()
+    contextPacks: this.contextPacksErrors(),
+    wordlists: this.wordlistsErrors(),
+    nouns: this.nounsErrors(),
+    adjectives: this.adjectivesErrors(),
+    verbs: this.verbsErrors(),
+    misc: this.miscErrors()
   };
 
   validationMessages = {
-    wordlists: {
-      name: [
-        {type: 'required', message: 'Name is required'},
-      ],
+    contextPacks: {
       enabled: {
         required: 'Must be true or false (check capitalization)',
       },
+      name: [
+      {type: 'required', message: 'Name is required'},
+      {type: 'maxlength', message: 'Name must be shorter than 50 characters'}
+      ]
+    },
+    wordlists: {
+      enabled: [],
+      name: [
+        {type: 'required', message: 'Name is required'},
+        {type: 'maxlength', message: 'Name must be shorter than 50 characters'}
+      ],
+
       nouns: {
-        word: {
-        },
-        forms: {
-        },
+        word: [
+          {type: 'required', message: 'Noun must not be empty'},
+          {type: 'maxlength', message: 'Noun must be shorter than 50 characters'}
+        ]
       },
+
       adjectives: {
-        word: {
-        },
-        forms: {
-        },
+        word: [
+          {type: 'required', message: 'Adjective must not be empty'},
+          {type: 'maxlength', message: 'Adjective must be shorter than 50 characters'}
+        ]
       },
+
       verbs: {
-        word: {
-        },
-        forms: {
-        },
+        word: [
+          {type: 'maxlength', message: 'Verb must be shorter than 50 characters'},
+          {type: 'required', message: 'Verb must not be empty'}
+        ]
       },
+
       misc: {
-        word: {
-        },
-        forms: {
-        },
+        word: [
+          {type: 'required', message: 'Misc must not be empty'},
+          {type: 'maxlength', message: 'Misc must be shorter than 50 characters'}
+        ]
       }
     }
   };
@@ -65,6 +83,7 @@ export class AddContextpacksComponent implements OnInit {
     this.contextPackForm = this.fb.group({
       name: new FormControl('', Validators.compose([
         Validators.required,
+        Validators.maxLength(50),
       ])),
       enabled: new FormControl('true', Validators.compose([
         Validators.required,
@@ -81,6 +100,7 @@ export class AddContextpacksComponent implements OnInit {
       //  ---------------------forms fields on x level ------------------------
       name: new FormControl('', Validators.compose([
         Validators.required,
+        Validators.maxLength(50),
       ])),
       enabled: new FormControl('', Validators.compose([
         Validators.required,
@@ -91,14 +111,16 @@ export class AddContextpacksComponent implements OnInit {
       adjectives: this.fb.array([]),
       verbs: this.fb.array([]),
       misc: this.fb.array([])
-
     });
   }
 
   initNouns() {
     return this.fb.group({
       //  ---------------------forms fields on y level ------------------------
-      word: [''],
+      word: new FormControl('',Validators.compose([
+        Validators.required,
+        Validators.maxLength(50),
+      ])),
       // ---------------------------------------------------------------------
       forms: this.fb.array([
         this.fb.control('')
@@ -125,7 +147,7 @@ export class AddContextpacksComponent implements OnInit {
 
     const formAdd = (((this.contextPackForm.controls.wordlists as FormArray).at(ix).get(`${pos}`) as FormArray).at(iy)
     .get('forms') as FormArray).at(0).value.toString();
-    console.log('didnt go through');
+    console.log('did not go through');
       control.setValue(formAdd);
       console.log(ix,iy);
   }
@@ -147,26 +169,68 @@ export class AddContextpacksComponent implements OnInit {
   wordlistsErrors() {
     return [{
       //  ---------------------forms errors on x level ------------------------
-      name: [' ', [Validators.required]],
-      enabled:[' ', [Validators.required]],
-
+      name: [' ', [Validators.required], [Validators.maxLength]],
+      enabled: [' ',[Validators.required]],
       // ---------------------------------------------------------------------
-      nouns: this.nounsErrors()
+      nouns: this.nounsErrors(),
+      adjectives: this.adjectivesErrors(),
+      verbs: this.verbsErrors(),
+      misc: this.miscErrors(),
 
     }];
 
   }
 
+  contextPacksErrors() {
+    return [{
+      //  ---------------------forms errors on x level ------------------------
+      name: [' ', [Validators.required], [Validators.maxLength]],
+
+      wordlist: this.wordlistsErrors(),
+    }];
+  }
+
   nounsErrors() {
     return [{
       //  ---------------------forms errors on y level ------------------------
-      word: '',
+      word: [' ', [Validators.required], [Validators.maxLength]],
       forms: this.fb.array([
         this.fb.control('')
       ]),
 
     }];
   }
+  adjectivesErrors() {
+    return [{
+      //  ---------------------forms errors on y level ------------------------
+      word: [' ', [Validators.required], [Validators.maxLength]],
+      forms: this.fb.array([
+        this.fb.control('')
+      ]),
+
+    }];
+  }
+  verbsErrors() {
+    return [{
+      //  ---------------------forms errors on y level ------------------------
+      word: [' ', [Validators.required], [Validators.maxLength]],
+      forms: this.fb.array([
+        this.fb.control('')
+      ]),
+
+    }];
+  }
+  miscErrors() {
+    return [{
+      //  ---------------------forms errors on y level ------------------------
+      word: [' ', [Validators.required], [Validators.maxLength]],
+      forms: this.fb.array([
+        this.fb.control('')
+      ]),
+
+    }];
+  }
+
   // form validation
   validateForm() {
     this.validateWordlists();
@@ -175,17 +239,36 @@ export class AddContextpacksComponent implements OnInit {
     const wordlistsA = this.contextPackForm.controls.wordlists as FormArray;
     // console.log(XsA.value);
     this.formErrors.wordlists = [];
+    this.formErrors.nouns= [];
     let x = 1;
     while (x <= wordlistsA.length) {
       this.formErrors.wordlists.push({
-        name: [' ', [Validators.required]],
-        enabled: [' ', [Validators.required]],
+        name: [' ', [Validators.required], [Validators.maxLength]],
+        enabled: [' ',[Validators.required]],
         nouns: [{
-          word: '',
+          word: [' ', [Validators.required], [Validators.maxLength]],
           forms: this.fb.array([
             this.fb.control('')
           ]),
-        }]
+        }],
+        verbs:[{
+          word: [' ', [Validators.required], [Validators.maxLength]],
+          forms:this.fb.array([
+            this.fb.control('')
+          ]),
+        }],
+        adjectives:[{
+          word: [' ', [Validators.required], [Validators.maxLength]],
+          forms: this.fb.array([
+            this.fb.control('')
+          ]),
+        }],
+        misc:[{
+          word: [' ', [Validators.required], [Validators.maxLength]],
+          forms: this.fb.array([
+            this.fb.control('')
+          ]),
+        }],
       });
       x++;
     }

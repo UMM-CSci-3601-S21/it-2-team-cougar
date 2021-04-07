@@ -197,7 +197,7 @@ describe('AddContextpacksComponent', () => {
       component.addWordlist();
       expect(component.contextPackForm.valid).toBeFalsy();
       ((component.contextPackForm).get(`name`).setValue('cow'));
-      ((component.contextPackForm).get(`enabled`).setValue('true'));
+      ((component.contextPackForm).get(`enabled`).setValue('false'));
       ((component.contextPackForm.controls.wordlists as FormArray).at(0).get(`name`).setValue('cow'));
       ((component.contextPackForm.controls.wordlists as FormArray).at(0).get(`enabled`).setValue('true'));
       expect(component.contextPackForm.valid).toBeTruthy();

@@ -6,12 +6,13 @@
   background-color: #f8f8f6;
 }
 
-label {
+label{
   display: block;
   width: 50em;
   margin: .5em 0;
-  color:#01596e;
+  color: #01596e
 }
+
 input {
   height: 2em;
   font-size: 1em;
@@ -22,31 +23,109 @@ button {
   display: inline-table;
   z-index: 1;
   font-family: Arial, sans-serif;
-  background-color:#02c3eb;
+  background-color: rgb(165, 165, 165);
   border: 2px solid black;
   padding: 5px;
   border-radius: 5px;
   cursor: pointer;
 }
-.delete-button{
-  margin: 5px;
-  border:none;
+
+.add-noun-button {
+  background-color: rgb(230, 88, 88);
+  font-weight: bolder;
+}
+.add-noun-button:hover {
+  background-color: rgba(230, 88, 88, 0.856);
+}
+.delete-noun-btn {
+  background-color: rgb(221, 49, 49);
+  font-weight: bolder;
+}
+.delete-noun-btn:hover {
+  background-color: rgba(221, 49, 49, 0.856);
+}
+.add-adj-button {
+  background-color: rgb(104, 202, 104);
+  font-weight: bolder;
+}
+.add-adj-button:hover {
+  background-color: rgba(104, 202, 104, 0.856);
+}
+.delete-adj-btn {
+  background-color: rgb(221, 49, 49);
+  font-weight: bolder;
+}
+.delete-adj-btn:hover {
+  background-color: rgba(221, 49, 49, 0.856);
+}
+.add-verb-button {
+  background-color: #3cbbd4;
+  font-weight: bolder;
+}
+.add-verb-button:hover {
+  background-color: #3cbbd4d8;
+}
+.delete-verb-btn {
+  background-color: rgb(221, 49, 49);
+  font-weight: bolder;
+}
+.delete-verb-btn:hover {
+  background-color: rgba(221, 49, 49, 0.856);
+}
+.add-misc-button {
+  background-color: rgb(241, 241, 95);
+  font-weight: bolder;
+}
+.add-misc-button:hover {
+  background-color: rgb(241, 241, 121);
+}
+.delete-misc-btn {
+  background-color: rgb(221, 49, 49);
+  font-weight: bolder;
+}
+.delete-misc-btn:hover {
+  background-color: rgba(221, 49, 49, 0.856);
+}
+.delete-button {
+  background-color: none;
+  border: none;
   display: inline-block;
 }
 .add-button {
   border:none;
   display: inline-block;
-
-
 }
 .buttons-div{
   background-color:none;
   position:relative;
 }
-
-
+.remove-wl-btn:hover {
+  background-color: rgb(221, 49, 49);
+}
+.contextpack-download-button {
+  float: right;
+  margin-top: 20px;
+}
+.view-btn {
+  float: right;
+  margin-right: 5px;
+}
+.add-cp-btn {
+  float: left;
+  margin-top: 20px;
+}
+.form-value{
+  margin-left: 400px;
+  margin-right: 100px;
+}
 button:hover {
   background-color: #3baada;
+}
+
+.delete-button:hover {
+  background-color: rgb(221, 49, 49);
+  border-radius: 5px;
+  border: none;
 }
 
 button:disabled {
@@ -62,22 +141,20 @@ button:disabled {
   width: 400px;
   margin: 5px;
 }
-.wordlists{
+.wordlists {
   border: 4px solid #3baada;
   border-radius: 5px;
   padding: 10px;
   width: 60%;
   margin: 5px;
-
 }
 .mat-card-title{
-  color:#01596e;
+  color:#0392b6;;
 }
 
 
 h3{
   font-style:oblique;
-  color:#01596e;
 }
 
 .sidenav-list a{

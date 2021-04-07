@@ -1,4 +1,7 @@
 export class AppPage {
+  getAppLogo() {
+    return cy.get('.app-logo');
+  }
   navigateTo() {
     return cy.visit('/');
   }
