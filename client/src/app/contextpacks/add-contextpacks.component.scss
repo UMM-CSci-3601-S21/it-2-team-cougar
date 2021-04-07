@@ -6,12 +6,21 @@
   background-color: #f8f8f6;
 }
 
+label{
+  display: block;
+  width: 50em;
+  margin: .5em 0;
+  color: #01596e
+}
+
 input {
   height: 2em;
   font-size: 1em;
   padding-left: .4em;
 }
-
+// .enabled, .wordlist-name{
+//   display: inline;
+// }
 button {
   display: inline-table;
   z-index: 1;
