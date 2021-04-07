@@ -9,9 +9,8 @@
       </mat-form-field>
       <button class="save-btn" (click)="saveName()">Save</button>
     </ng-template>
-    <button (click)="changeName()" *ngIf="editshow">Edit Name</button>
-    <button (click)="changeIcon()" *ngIf="editshowicon">Edit Icon</button>
-    <button [routerLink]="['/contextpacks', this.contextpack._id, 'addwordlist']">Add WordList</button>
+
+
     <mat-card-subtitle class="contextpack-card-enabled">Enabled: {{ this.contextpack.enabled }}</mat-card-subtitle>
     <mat-card-subtitle class="contextpack-card-icon" *ngIf="editshowicon == true; else editicon">Icon: {{ this.contextpack.icon }}</mat-card-subtitle>
 
@@ -24,6 +23,9 @@
     </ng-template>
 
   </mat-card-header>
+  <button (click)="changeName()" *ngIf="editshow">Edit Name</button>
+  <button (click)="changeIcon()" *ngIf="editshowicon">Edit Icon</button>
+  <button [routerLink]="['/contextpacks', this.contextpack._id, 'addwordlist']">Add WordList</button>
   <mat-card-content *ngIf="!this.simple">
 
 
