@@ -82,11 +82,15 @@ public class ContextPackController {
   public void editContextPack(Context ctx) {
 
     String id = ctx.pathParam("id");
+    System.err.println(ctx.body());
     ContextPack newContextPack = ctx.bodyValidator(ContextPack.class)
     .check(pack -> pack.name != null)
     .get();
 
     contextPackCollection.replaceOne(eq("id", id), newContextPack);
+
+    ctx.status(201);
+    ctx.json(newContextPack);
 
   }
 

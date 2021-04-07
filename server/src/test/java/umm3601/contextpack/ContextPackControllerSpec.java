@@ -592,31 +592,31 @@ public class ContextPackControllerSpec {
   public void editContextPack(){
 
     String test = "{"
-    + "\"_id\":" + testID + ","
+    // + "\"_id\": \"" + testID + "\","
     + "\"name\": \"sight words\","
     + "\"icon\": \"eye.png\","
     + "\"enabled\": true,"
-    + "\"wordlist\":"
-      + "{"
-      + "\"name\": \"goats\","
-      + "\"enabled\": true,"
-      + "\"nouns\": ["
-      + "{\"word\": \"boat\", \"forms\": [\"he\"]},"
-      + "{\"word\": \"she\", \"forms\": [\"he\"]}"
-      + "],"
-      + "\"adjectives\": ["
-      + "{\"word\": \"he\", \"forms\": [\"he\"]},"
-      + "{\"word\": \"he\", \"forms\": [\"he\"]}"
-      + "],"
-      + "\"verbs\": ["
-      + "{\"word\": \"he\", \"forms\": [\"he\"]},"
-      + "{\"word\": \"he\", \"forms\": [\"he\"]}"
-      + "],"
-      + "\"misc\": ["
-      + "{\"word\": \"duck\", \"forms\": [\"ducky\"]},"
-      + "{\"word\": \"he\", \"forms\": [\"he\"]}"
-      + "]"
-      + "}}"
+    + "\"wordlists\":"
+      + "["
+      // + "\"name\": \"goats\","
+      // + "\"enabled\": true,"
+      // + "\"nouns\": ["
+      // + "{\"word\": \"boat\", \"forms\": [\"he\"]},"
+      // + "{\"word\": \"she\", \"forms\": [\"he\"]}"
+      // + "],"
+      // + "\"adjectives\": ["
+      // + "{\"word\": \"he\", \"forms\": [\"he\"]},"
+      // + "{\"word\": \"he\", \"forms\": [\"he\"]}"
+      // + "],"
+      // + "\"verbs\": ["
+      // + "{\"word\": \"he\", \"forms\": [\"he\"]},"
+      // + "{\"word\": \"he\", \"forms\": [\"he\"]}"
+      // + "],"
+      // + "\"misc\": ["
+      // + "{\"word\": \"duck\", \"forms\": [\"ducky\"]},"
+      // + "{\"word\": \"he\", \"forms\": [\"he\"]}"
+      // + "]"
+      + "]}"
     ;
 
 
@@ -631,6 +631,7 @@ public class ContextPackControllerSpec {
   contextPackController.editContextPack(ctx);
 
   String result = ctx.resultString();
+  System.out.print(result);
   ContextPack resultPack = JavalinJson.fromJson(result, ContextPack.class);
 
 

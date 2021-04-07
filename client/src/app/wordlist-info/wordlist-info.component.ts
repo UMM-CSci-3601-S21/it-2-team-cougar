@@ -33,10 +33,7 @@ export class WordlistInfoComponent implements OnInit {
 
     });
 
-    console.log(this.id);
-    console.log(this.name);
     console.log(this.wordlist);
-    console.log(this.originalName);
   }
 
   addWord(word) {

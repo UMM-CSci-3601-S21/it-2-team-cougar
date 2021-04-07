@@ -31,8 +31,6 @@ export class ContextPackCardComponent implements OnInit {
     this.route.paramMap.subscribe((pmap) => {
       this.id = pmap ? pmap.get('id') : '';
     });
-    this.contextPackService.editContextPack(this.contextpack,this.id)
-    .subscribe();
 
   }
 
