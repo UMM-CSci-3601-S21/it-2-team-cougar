@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ContextPackService } from './contextpack.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ContextPackCardComponent } from './contextpack-card.component';
 
 @Component({
@@ -13,7 +13,7 @@ import { ContextPackCardComponent } from './contextpack-card.component';
 })
 export class AddContextpacksComponent implements OnInit {
   contextPackForm: FormGroup;
-  contextpackcard = new ContextPackCardComponent(this.contextPackService);
+  contextpackcard = new ContextPackCardComponent(this.route,this.contextPackService);
   isShown = false;
 
   formErrors = {
@@ -56,7 +56,7 @@ export class AddContextpacksComponent implements OnInit {
   };
 
   constructor(private fb: FormBuilder, private contextPackService: ContextPackService,
-    private snackBar: MatSnackBar, private router: Router) { }
+    private snackBar: MatSnackBar, private router: Router, private route: ActivatedRoute) { }
 
 
 

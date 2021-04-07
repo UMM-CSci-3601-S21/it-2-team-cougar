@@ -90,7 +90,9 @@ public class ContextPackController {
 
   }
 
-  public void updateContextPack(ContextPack contextPack) {
+  public void updateContextPack(Context ctx) {
+    String id = ctx.pathParam("id");
+    ContextPack contextPack = contextPackCollection.findOneById(id);
     contextPackCollection.replaceOne(eq("id", contextPack._id), contextPack);
   }
 

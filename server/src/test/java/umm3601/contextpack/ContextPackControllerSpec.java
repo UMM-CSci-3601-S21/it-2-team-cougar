@@ -592,12 +592,13 @@ public class ContextPackControllerSpec {
   public void editContextPack(){
 
     String test = "{"
+    + "\"_id\":" + testID + ","
     + "\"name\": \"sight words\","
     + "\"icon\": \"eye.png\","
     + "\"enabled\": true,"
     + "\"wordlist\":"
       + "{"
-      + "\"topic\": \"goats\","
+      + "\"name\": \"goats\","
       + "\"enabled\": true,"
       + "\"nouns\": ["
       + "{\"word\": \"boat\", \"forms\": [\"he\"]},"
@@ -618,6 +619,8 @@ public class ContextPackControllerSpec {
       + "}}"
     ;
 
+
+
   mockReq.setBodyContent(test);
   mockReq.setMethod("PUT");
 
@@ -632,7 +635,7 @@ public class ContextPackControllerSpec {
 
 
 
-  assertEquals(resultPack.name, "sight words");
+  assertEquals("sight words", resultPack.name);
 
   }
 

@@ -9,8 +9,9 @@ import { ContextPack, Word, Wordlist } from '../contextpacks/contextpack';
 export class WordCardComponent implements OnInit {
 
   @Input() contextpack: ContextPack;
-  @Input() wordlist: Wordlist;
+  @Input() wordList: Wordlist;
   @Input() word: Word;
+  @Input() type: string;
 
   @Output() delete = new EventEmitter();
 

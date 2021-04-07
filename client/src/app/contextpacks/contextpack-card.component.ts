@@ -19,14 +19,20 @@ export class ContextPackCardComponent implements OnInit {
   editshowicon = true;
   name = '';
   icon = '';
+  id = '';
   wordcount = 0;
 
 
 
 
-  constructor(private contextPackService: ContextPackService) { }
+  constructor(private route: ActivatedRoute, private contextPackService: ContextPackService) { }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe((pmap) => {
+      this.id = pmap ? pmap.get('id') : '';
+    });
+    this.contextPackService.editContextPack(this.contextpack,this.id)
+    .subscribe();
 
   }
 
@@ -127,12 +133,14 @@ export class ContextPackCardComponent implements OnInit {
     this.contextpack.name = this.name;
     this.editshow = !this.editshow;
     console.log(this.contextpack.name);
-    this.contextPackService.editContextPack(this.contextpack,this.contextpack._id)
+    this.contextPackService.editContextPack(this.contextpack,this.id)
     .subscribe();
   }
 
   saveIcon() {
     this.contextpack.icon = this.icon;
     this.editshowicon = !this.editshowicon;
+    this.contextPackService.editContextPack(this.contextpack,this.id)
+    .subscribe();
   }
 }

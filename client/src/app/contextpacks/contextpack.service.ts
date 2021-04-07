@@ -49,7 +49,7 @@ export class ContextPackService {
   }
 
   editWordList(name: string, wordList: Wordlist, id: string): Observable<Wordlist> {
-    return this.httpClient.put<Wordlist>(this.contextpackUrl + '/' + id, wordList).pipe(map(res => res));
+    return this.httpClient.put<Wordlist>(this.contextpackUrl + '/' + id + '/' + name, wordList).pipe(map(res => res));
   }
 
   getWordListByName(name: string, id: string): Observable<Wordlist> {
@@ -59,6 +59,8 @@ export class ContextPackService {
   addWordList(newWordList: Wordlist, id: string) {
     return this.httpClient.post<Wordlist>(this.contextpackUrl + '/' + id + '/' + 'addwordlist', newWordList).pipe(map(res => res));
   }
+
+
 
 
 }
