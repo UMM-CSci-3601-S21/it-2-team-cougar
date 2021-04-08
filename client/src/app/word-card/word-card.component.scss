@@ -1,3 +1,9 @@
 .word-card{
   display: inline-block;
+  margin: 5px;
+  align-items:top;
+}
+
+.delete-word-btn:hover {
+  background-color: rgba(221, 49, 49, 0.856);
 }
