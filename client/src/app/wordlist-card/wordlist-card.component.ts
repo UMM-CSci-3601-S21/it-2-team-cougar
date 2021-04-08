@@ -14,18 +14,8 @@ export class WordlistCardComponent implements OnInit {
   @Input() contextpack: ContextPack;
   @Input() wordlist: Wordlist;
   @Input() simple ? = false;
-
-  testWordList: Wordlist = {
-
-    name: '',
-    enabled: false,
-    nouns: [],
-    verbs: [],
-    adjectives: [],
-    misc: []
-
-  };
-
+  getUserSub: Subscription;
+  originalName: string;
 
 
 

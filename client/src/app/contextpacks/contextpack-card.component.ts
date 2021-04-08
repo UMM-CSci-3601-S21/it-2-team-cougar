@@ -128,21 +128,5 @@ export class ContextPackCardComponent implements OnInit {
   }
 
 
-  changeName() {
-    this.editshow = !this.editshow;
-  }
 
-  changeIcon() {
-    this.editshowicon = !this.editshowicon;
-  }
-
-  saveName() {
-    this.contextpack.name = this.name;
-    this.editshow = !this.editshow;
-  }
-
-  saveIcon() {
-    this.contextpack.icon = this.icon;
-    this.editshowicon = !this.editshowicon;
-  }
 }

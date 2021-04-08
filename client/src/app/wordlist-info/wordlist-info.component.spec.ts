@@ -13,6 +13,8 @@ describe('WordlistInfoComponent', () => {
   let component: WordlistInfoComponent;
   let fixture: ComponentFixture<WordlistInfoComponent>;
   const activatedRoute: ActivatedRouteStub = new ActivatedRouteStub();
+  let editshow: false;
+
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -33,6 +35,14 @@ describe('WordlistInfoComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+
+
+
+
+
+
+
 
 
 });

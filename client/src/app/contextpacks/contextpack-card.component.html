@@ -7,7 +7,7 @@
         <mat-label>Edit Word List Name</mat-label>
         <input matInput name="name" [(ngModel)]="name">
       </mat-form-field>
-      <button class="save-btn" (click)="saveName()">Save</button>
+      <button class="save-btn" >Save</button>
     </ng-template>
 
 
@@ -19,12 +19,12 @@
         <mat-label>Edit Word List Icon</mat-label>
         <input matInput name="name" [(ngModel)]="icon">
       </mat-form-field>
-      <button class="save-btn" (click)="saveIcon()">Save</button>
+      <button class="save-btn" >Save</button>
     </ng-template>
 
   </mat-card-header>
-  <button (click)="changeName()" *ngIf="editshow">Edit Name</button>
-  <button (click)="changeIcon()" *ngIf="editshowicon">Edit Icon</button>
+  <button  *ngIf="editshow">Edit Name</button>
+  <button  *ngIf="editshowicon">Edit Icon</button>
   <button [routerLink]="['/contextpacks', this.contextpack._id, 'addwordlist']">Add WordList</button>
   <mat-card-content *ngIf="!this.simple">
 
