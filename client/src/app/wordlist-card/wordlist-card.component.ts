@@ -34,11 +34,6 @@ export class WordlistCardComponent implements OnInit {
   constructor(private router: ActivatedRoute, private contextPackService: ContextPackService) { }
 
   ngOnInit(): void {
-    this.router.paramMap.subscribe((pmap) => {
-      this.id = pmap ? pmap.get('id') : '';
-      this.originalName = this.wordlist.name;
-      console.log(this.originalName);
-    });
   }
 
 

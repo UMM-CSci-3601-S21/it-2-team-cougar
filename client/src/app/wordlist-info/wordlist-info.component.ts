@@ -14,6 +14,7 @@ export class WordlistInfoComponent implements OnInit {
   @Input() contextpack: ContextPack;
   wordlist: Wordlist;
   getUserSub: Subscription;
+  enabled: boolean;
 
   id = '';
   name = '';
@@ -33,7 +34,6 @@ export class WordlistInfoComponent implements OnInit {
 
     });
 
-    console.log(this.wordlist);
   }
 
   addWord(word) {
@@ -62,6 +62,7 @@ export class WordlistInfoComponent implements OnInit {
     this.getUserSub = this.contextPackService.getWordListByName(this.name,this.id).subscribe(i => {
       this.wordlist = i;
       this.originalName = i.name;
+      this.enabled = i.enabled;
       this.getAllWords();
     });
   }

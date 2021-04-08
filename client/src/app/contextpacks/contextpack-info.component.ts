@@ -19,6 +19,7 @@ export class ContextPackInfoComponent implements OnInit, OnDestroy {
   contextpack: ContextPack;
   id: string;
   getContextPackSub: Subscription;
+  getUserSub: Subscription;
 
   constructor(private route: ActivatedRoute, private contextPackService: ContextPackService) { }
 
@@ -32,10 +33,11 @@ export class ContextPackInfoComponent implements OnInit, OnDestroy {
         this.getContextPackSub.unsubscribe();
       }
       this.getContextPackSub = this.contextPackService.getContextPackById(this.id).subscribe(contextpack => this.contextpack = contextpack);
+      this.contextPackService.editContextPack(this.contextpack,this.id).subscribe();
 
 
     });
-    console.log(this.contextpack._id);
+
   }
 
   ngOnDestroy(): void {

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { ContextPack, Wordlist, WordRole } from './contextpack';
 import { ContextPackService } from './contextpack.service';
 
@@ -14,6 +15,8 @@ export class ContextPackCardComponent implements OnInit {
   @Input() contextpack: ContextPack;
   @Input() wordlist: Wordlist;
   @Input() simple?= false;
+  getUserSub: Subscription;
+  newContextPack: ContextPack;
   selected = 'true';
   editshow = true;
   editshowicon = true;
@@ -32,6 +35,12 @@ export class ContextPackCardComponent implements OnInit {
       this.id = pmap ? pmap.get('id') : '';
     });
 
+  }
+
+  loadContextPack() {
+    this.getUserSub = this.contextPackService.getContextPackById(this.id).subscribe(i => {
+      this.newContextPack = i;
+    });
   }
 
 
