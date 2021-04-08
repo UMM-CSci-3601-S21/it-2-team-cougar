@@ -1,12 +1,12 @@
 <mat-card class="word-card">
   <div class="card-header">
-    <h1 class="word-name">{{word.word}}</h1>
+    <h1 class="word-name" *ngIf="word">{{this.word.word}}</h1>
     <mat-card-subtitle class="word-type"></mat-card-subtitle>
   </div>
   <mat-card-content>
-    <div class="holder">
+    <div class="holder" *ngIf="word">
       <p class="forms"><strong>Forms: </strong></p>
-      <p *ngFor="let form of word.forms">{{form}}</p>
+      <p *ngFor="let form of this.word.forms">{{form}}</p>
     </div>
 
   </mat-card-content>

@@ -2,7 +2,7 @@
   <div>
     <div class="card-header">
       <div *ngIf="editshow == true; else editname">
-        <h1 class="wordList-name">{{this.wordlist.name}}</h1><button (click)="change()">Edit Name</button>
+        <h1 class="wordList-name" *ngIf="wordlist">{{this.wordlist.name}}</h1><button>Edit Name</button>
       </div>
       <ng-template #editname>
         <mat-form-field class="title">
@@ -14,10 +14,10 @@
     </div>
   </div>
 
-  <p class="enabled">{{this.wordlist.enabled ? 'Enabled' : 'Disabled'}}</p>
+  <p class="enabled" *ngIf="wordlist">{{this.wordlist.enabled ? 'Enabled' : 'Disabled'}}</p>
 
   <p><strong>Amount of Words in List:</strong></p>
-  <mat-card-subtitle>{{this.wordlist.nouns.length + this.wordlist.verbs.length + this.wordlist.adjectives.length +
+  <mat-card-subtitle *ngIf="wordlist">{{this.wordlist.nouns.length + this.wordlist.verbs.length + this.wordlist.adjectives.length +
     this.wordlist.misc.length }}</mat-card-subtitle>
 
   <button (click)="back()">Save & Exit</button>

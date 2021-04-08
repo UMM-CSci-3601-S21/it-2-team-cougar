@@ -22,4 +22,18 @@ describe('WordFormComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should not accept empty types', () => {
+    expect(component.form).toBeTruthy();
+  });
+  it('adding works for valid values', () => {
+    component.wordForm = 'something';
+    component.add();
+    expect(component.added).toBe(true);
+  });
+  it('adding doesnt work for valid values', () => {
+    component.wordForm = '';
+    component.add();
+    expect(component.added).toBe(false);
+  });
 });

@@ -1,22 +1,22 @@
 <mat-card class="wordList-card">
   <div>
     <div class="card-header">
-        <h1 class="wordList-name">{{wordlist.name}}</h1>
+        <h1 class="wordList-name"*ngIf="wordlist">{{this.wordlist.name}}</h1>
       </div>
     </div>
 
-  <p class="enabled">{{wordlist.enabled ? 'Enabled' : 'Disabled'}}</p>
+  <p class="enabled" *ngIf="wordlist" >{{this.wordlist.enabled ? 'Enabled' : 'Disabled'}}</p>
 
   <p><strong>Amount of Words in List:</strong></p>
   <mat-card-subtitle>{{wordlist.nouns.length + wordlist.verbs.length + wordlist.adjectives.length + wordlist.misc.length }}</mat-card-subtitle>
 
-  <mat-card-content>
+  <mat-card-content >
     <div class= "list-detail">
         <div class="nounsList">
             <!--display:flex-->
             <p  class="desc title-section" element="nouns"><strong>Nouns: </strong></p>
-            <p  color="primary" class="bubbleNoun" *ngFor="let noun of wordlist.nouns; let index = index">
-              <app-word-card [word]="this.wordlist.nouns[index]"></app-word-card></p>
+            <p  color="primary" class="bubbleNoun" *ngFor="let noun of this.wordlist ? wordlist.nouns: []; let index = index">
+              <app-word-card [word]="this.wordlist ? this.wordlist.nouns[index]: []"></app-word-card></p>
           </div>
           <div class="verbsList">
             <!--display:flex-->
@@ -40,6 +40,6 @@
     </div>
   </mat-card-content>
 
-  <button [routerLink]="['/contextpacks', this.contextpack._id, this.wordlist.name]">View WordList</button>
+  <button [routerLink]="['/contextpacks', this.contextpack ? this.contextpack._id: '', this.wordlist.name]">View WordList</button>
 
 </mat-card>

@@ -1,9 +1,11 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRouteStub } from 'src/testing/activated-route-stub';
 import { MockContextPackService } from 'src/testing/contextpack.service.mock';
+import { COMMON_IMPORTS } from '../app-routing.module';
 import { ContextPackService } from '../contextpacks/contextpack.service';
 
 import { AddWordlistComponent } from './add-wordlist.component';
@@ -22,7 +24,8 @@ describe('AddWordlistComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddWordlistComponent,RouterTestingModule,RouterModule.forRoot([]) ],
+      declarations: [AddWordlistComponent],
+      imports: [HttpClientTestingModule,RouterTestingModule,RouterModule.forRoot([]),COMMON_IMPORTS],
       providers:[{provide: ActivatedRoute, useValue: activatedRoute,},
         { provide: ContextPackService, useValue: new MockContextPackService()},
         { provide: Router, useValue: mockRouter }]

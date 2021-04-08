@@ -40,7 +40,7 @@ describe('Context Pack service: ', () => {
 
     const newTestWordlist: Wordlist =
       {
-        name: 'happy',
+        name: 'great',
         enabled: false,
         nouns: [],
         verbs: [],
@@ -160,6 +160,29 @@ describe('Context Pack service: ', () => {
 
     req.flush(testContextPacks);
 
+
+  });
+
+  it('get wordlist to api/users', () => {
+
+    contextpackService.getWordListByName('happy', 'chris_id').subscribe();
+
+    const req = httpTestingController.expectOne(contextpackService.contextpackUrl + '/' + 'chris_id' + '/' + 'happy');
+    expect(req.request.method).toEqual('GET');
+
+    req.flush(testContextPacks);
+
+  });
+
+
+  it('edit wordlist to api/users', () => {
+
+    contextpackService.editWordList('happy', newTestWordlist, 'chris_id').subscribe();
+
+    const req = httpTestingController.expectOne(contextpackService.contextpackUrl + '/' + 'chris_id' + '/' + 'happy');
+    expect(req.request.method).toEqual('PUT');
+
+    req.flush(testContextPacks);
 
   });
 

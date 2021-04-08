@@ -44,9 +44,6 @@ export class ContextPackService {
     return this.httpClient.post<{id: string}>(this.contextpackUrl, newPack).pipe(map(res => res.id));
   }
 
-  editContextPack(ctxPack: ContextPack, id: string): Observable<ContextPack> {
-    return this.httpClient.put<ContextPack>(this.contextpackUrl + '/' + id, ctxPack).pipe(map(res => res));
-  }
 
   editWordList(name: string, wordList: Wordlist, id: string): Observable<Wordlist> {
     return this.httpClient.put<Wordlist>(this.contextpackUrl + '/' + id + '/' + name, wordList).pipe(map(res => res));

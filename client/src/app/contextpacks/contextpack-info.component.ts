@@ -33,7 +33,6 @@ export class ContextPackInfoComponent implements OnInit, OnDestroy {
         this.getContextPackSub.unsubscribe();
       }
       this.getContextPackSub = this.contextPackService.getContextPackById(this.id).subscribe(contextpack => this.contextpack = contextpack);
-      this.contextPackService.editContextPack(this.contextpack,this.id).subscribe();
 
 
     });

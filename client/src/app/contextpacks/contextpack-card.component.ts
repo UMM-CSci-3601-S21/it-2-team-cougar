@@ -12,8 +12,8 @@ import { ContextPackService } from './contextpack.service';
 })
 export class ContextPackCardComponent implements OnInit {
 
-  @Input() contextpack: ContextPack;
-  @Input() wordlist: Wordlist;
+  @Input() contextpack?: ContextPack;
+  @Input() wordlist?: Wordlist;
   @Input() simple?= false;
   getUserSub: Subscription;
   newContextPack: ContextPack;
@@ -139,15 +139,10 @@ export class ContextPackCardComponent implements OnInit {
   saveName() {
     this.contextpack.name = this.name;
     this.editshow = !this.editshow;
-    console.log(this.contextpack.name);
-    this.contextPackService.editContextPack(this.contextpack,this.id)
-    .subscribe();
   }
 
   saveIcon() {
     this.contextpack.icon = this.icon;
     this.editshowicon = !this.editshowicon;
-    this.contextPackService.editContextPack(this.contextpack,this.id)
-    .subscribe();
   }
 }

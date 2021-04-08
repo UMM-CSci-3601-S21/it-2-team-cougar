@@ -47,7 +47,7 @@
       </mat-select>
     </mat-form-field>
 
-    <div *ngIf="selected === 'true'; else templateWords">
+    <div *ngIf="selected === 'true'; else templateWords" >
       <div *ngFor="let wordlists of contextpack.wordlists; let index = index">
         <app-wordlist-card class="wordlist-card" [contextpack]="this.contextpack" [wordlist]="this.contextpack.wordlists[index]"></app-wordlist-card>
       </div>

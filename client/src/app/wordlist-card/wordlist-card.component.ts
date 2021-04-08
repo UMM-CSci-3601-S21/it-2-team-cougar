@@ -14,22 +14,22 @@ export class WordlistCardComponent implements OnInit {
   @Input() contextpack: ContextPack;
   @Input() wordlist: Wordlist;
   @Input() simple ? = false;
-  getUserSub: Subscription;
-  originalName: string;
+
+  testWordList: Wordlist = {
+
+    name: '',
+    enabled: false,
+    nouns: [],
+    verbs: [],
+    adjectives: [],
+    misc: []
+
+  };
 
 
 
-  words;
-  wordType: string;
-  types: string[];
-  editshow= true;
-  name = '';
-  id = '';
 
-  noun = 'Noun';
-  verb = 'Verb';
-  adj = 'Adjective';
-  misc = 'Misc Word';
+
 
   constructor(private router: ActivatedRoute, private contextPackService: ContextPackService) { }
 
