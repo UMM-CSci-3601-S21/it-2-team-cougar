@@ -4,14 +4,6 @@
     <mat-nav-list class="sidenav-list" role="navigation">
 
       <!-- Side navigation links -->
-
-      <a mat-list-item routerLink="/" routerLinkActive="drawer-list-item-active"
-        #routerLinkActiveInstance="routerLinkActive" [attr.tabindex]="routerLinkActiveInstance.isActive ? 0 : -1"
-        [routerLinkActiveOptions]="{exact: true}" (click)="drawer.close()">
-        <mat-icon matListIcon>home</mat-icon>
-        Home
-      </a>
-
       <a mat-list-item routerLink="/contextpacks" routerLinkActive="drawer-list-item-active" (click)="drawer.close()">
         <mat-icon matListIcon>list</mat-icon>
         Context Packs

@@ -9,7 +9,7 @@ describe('App', () => {
       cy.get('.app-logo').should('be.visible');
   });
 
-  it('The sidenav should open, navigate to "Context Packs" and back to "Home"', () => {
+  it('The sidenav should open, navigate to "Context Packs"', () => {
     // Before clicking on the button, the sidenav should be hidden
     page.getSidenav()
       .should('be.hidden');
@@ -20,12 +20,6 @@ describe('App', () => {
 
     page.getNavLink('Context Packs').click();
     cy.url().should('match', /\/contextpacks$/);
-    page.getSidenav()
-      .should('be.hidden');
-
-    page.getSidenavButton().click();
-    page.getNavLink('Home').click();
-    cy.url().should('match', /^https?:\/\/[^\/]+\/?$/);
     page.getSidenav()
       .should('be.hidden');
   });
