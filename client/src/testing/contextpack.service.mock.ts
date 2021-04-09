@@ -40,6 +40,14 @@ export class MockContextPackService extends ContextPackService {
         adjectives: MockContextPackService.testAdjectives,
         verbs: MockContextPackService.testVerbs,
         misc: MockContextPackService.testMisc
+      },
+      {
+        name: 'boo',
+        enabled: false,
+        nouns: MockContextPackService.testNouns,
+        adjectives: MockContextPackService.testAdjectives,
+        verbs: MockContextPackService.testVerbs,
+        misc: MockContextPackService.testMisc
       }
   ];
 
@@ -83,6 +91,16 @@ export class MockContextPackService extends ContextPackService {
       return of(null);
     }
   }
+
+
+  getWordListByName(name: string, id: string): Observable<Wordlist> {
+    return of(MockContextPackService.testWordlists[1]);
+  }
+
+  addWordList(newWordList: Wordlist, id: string) {
+    return of(newWordList);
+  }
+
 
 
 }
