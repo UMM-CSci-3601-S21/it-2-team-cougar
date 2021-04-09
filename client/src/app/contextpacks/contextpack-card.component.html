@@ -1,5 +1,6 @@
 <mat-card class="contextpack-card" *ngIf="this.contextpack">
   <mat-card-header>
+
     <mat-card-title class="contextpack-card-name" *ngIf="editshow == true; else editname">{{
       this.contextpack.name.charAt(0).toUpperCase() + this.contextpack.name.slice(1) }}</mat-card-title>
     <ng-template #editname>
@@ -11,7 +12,12 @@
     </ng-template>
 
 
-    <mat-card-subtitle class="contextpack-card-enabled">Enabled: {{ this.contextpack.enabled }}</mat-card-subtitle>
+    <div class="enabled"*ngIf="this.contextpack.enabled">
+      <mat-icon class="checkmark"> check_circle</mat-icon>
+    </div>
+    <div class="disabled" *ngIf="!this.contextpack.enabled">
+      <mat-icon class="red-x">highlight_off</mat-icon>
+    </div>
     <img mat-card-avatar class ="contextpack-card-icon" *ngIf="editshowicon == true; else editicon" src={{this.contextpack.icon}}>
 
     <ng-template #editicon>
@@ -22,23 +28,20 @@
       <button class="save-btn" (click)="saveIcon()">Save</button>
     </ng-template>
 
+
   </mat-card-header>
   <button class="edit-name" (click)="changeName()" *ngIf="editshow">Edit Name</button>
   <button class="edit-icon" (click)="changeIcon()" *ngIf="editshowicon">Edit Icon</button>
   <button class="add-wordlist" [routerLink]="['/contextpacks', this.contextpack._id, 'addwordlist']">Add WordList</button>
   <mat-card-content *ngIf="!this.simple">
 
-
     <p><strong class="cpMetadata">Number of wordlists in Pack: {{this.contextpack.wordlists.length}}</strong></p>
 
 
+      <button mat-icon-button color="accent" class="contextpack-download-button" (click)='downloadJson(contextpack, contextpack.name).click()'>
+    <mat-icon class="download">download</mat-icon>
+  </button>
 
-
-
-    <button mat-icon-button color="accent" class="contextpack-download-button"
-      (click)='downloadJson(contextpack, contextpack.name).click()'>
-      <mat-icon>download</mat-icon>
-    </button>
     <mat-form-field>
       <mat-label>View Type</mat-label>
       <mat-select [(value)]="selected" data-test="contextpackWordSelect">
@@ -54,6 +57,7 @@
     </div>
 
     <ng-template #templateWords>
+
       <span class="contextpack-card-nouns">
         <div style="white-space: pre-line"><Strong>Nouns: </Strong>{{displayAllWords(this.contextpack, 'nouns')}}</div>
       </span>
@@ -66,6 +70,7 @@
       <span class="contextpack-card-misc">
         <div style="white-space: pre-line"><Strong>Misc: </Strong>{{displayAllWords(this.contextpack, 'misc')}}</div>
       </span>
+
     </ng-template>
 
 

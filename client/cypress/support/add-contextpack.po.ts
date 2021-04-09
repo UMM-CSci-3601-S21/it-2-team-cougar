@@ -1,6 +1,7 @@
 import {ContextPack} from 'src/app/contextpacks/contextpack';
 
 export class AddPackPage {
+  contextPack: ContextPack;
   navigateTo() {
     return cy.visit('/edit');
   }
@@ -28,7 +29,12 @@ export class AddPackPage {
     return cy.get('.add-wordlist-button').click({force: true});
   }
   addPosArray(pos: string){
+    //.type('farm words', {force: true})
     return cy.get(`.add-${pos}-button`).click({force: true});
+  }
+  deletePosArray(pos: string){
+    //.type('farm words', {force: true})
+    return cy.get(`.delete-${pos}-btn`).click({force: true});
   }
   showJson(){
     return cy.get('[data-test="showJsonButton"]').click({force: true});
@@ -40,14 +46,19 @@ export class AddPackPage {
 
 
 
+
   addPack(newPack: ContextPack) {
     this.getFormField('name').type(newPack.name);
     this.getFormField('enabled').click({force: true});
     this.addWordlist();
     this.addPosArray('noun');
+    this.deletePosArray('noun');
     this.addPosArray('verb');
+    this.deletePosArray('verb');
     this.addPosArray('adj');
+    this.deletePosArray('adj');
     this.addPosArray('misc');
+    this.deletePosArray('misc');
     if (newPack.wordlists) {
       this.getFormField('name').then(els => {
         [...els].forEach(el => cy.wrap(el).type('horsies', {force:true}));

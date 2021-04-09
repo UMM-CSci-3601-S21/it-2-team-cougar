@@ -10,12 +10,14 @@ span.contextpack-card-wordlists{
 
 .mat-card{
   background-color:white;
-
 }
 .contextpack-card-name{
   color:#01596e;
-
 }
+.checkmark{
+  color:green;
+}
+
 
 .edit-name, .edit-icon, .add-wordlist {
   margin-right: 2px;
@@ -30,6 +32,9 @@ span.contextpack-card-wordlists{
 }
 .edit-name::after, .edit-icon::after {
   display: block;
+
+.red-x{
+  color:red;
 }
 
 span.contextpack-card-nouns{
