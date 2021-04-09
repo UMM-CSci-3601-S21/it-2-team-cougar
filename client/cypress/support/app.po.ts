@@ -1,4 +1,7 @@
 export class AppPage {
+  getAppLogo() {
+    return cy.get('.app-logo');
+  }
   navigateTo() {
     return cy.visit('/');
   }
@@ -15,7 +18,7 @@ export class AppPage {
     return cy.get('.sidenav');
   }
 
-  getNavLink(navOption: 'Home' | 'Users') {
+  getNavLink(navOption: 'Context Packs') {
     return cy.contains('[routerlink] > .mat-list-item-content', `${navOption}`);
   }
 }

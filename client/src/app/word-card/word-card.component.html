@@ -1,0 +1,16 @@
+<mat-card class="word-card">
+  <div class="card-header">
+    <h1 class="word-name" *ngIf="word">{{this.word.word}}</h1>
+    <mat-card-subtitle class="word-type"></mat-card-subtitle>
+  </div>
+  <mat-card-content>
+    <div class="holder" *ngIf="word">
+      <p class="forms"><strong>Forms: </strong></p>
+      <p *ngFor="let form of this.word.forms">{{form}}</p>
+    </div>
+
+  </mat-card-content>
+  <div>
+    <button class="delete-wrd-btn" mat-button (click)="deleteWord()"><mat-icon matListIcon>delete</mat-icon></button>
+  </div>
+</mat-card>

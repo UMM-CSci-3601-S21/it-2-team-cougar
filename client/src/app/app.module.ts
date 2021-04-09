@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import {MatButtonModule} from '@angular/material/button';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
@@ -24,14 +25,21 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
-import { UserListComponent } from './users/user-list.component';
-import { HomeComponent } from './home/home.component';
-import { UserService } from './users/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LayoutModule } from '@angular/cdk/layout';
-import { UserCardComponent } from './users/user-card.component';
-import { UserProfileComponent } from './users/user-profile.component';
-import { AddUserComponent } from './users/add-user.component';
+import { ContextPackListComponent } from './contextpacks/contextpack-list.component';
+import { ContextPackService } from './contextpacks/contextpack.service';
+import { ContextPackCardComponent } from './contextpacks/contextpack-card.component';
+import { ContextPackInfoComponent } from './contextpacks/contextpack-info.component';
+import { AddContextpacksComponent } from './contextpacks/add-contextpacks.component';
+import { WordlistCardComponent } from './wordlist-card/wordlist-card.component';
+import { WordlistInfoComponent } from './wordlist-info/wordlist-info.component';
+import { WordCardComponent } from './word-card/word-card.component';
+import { EditContextpackNameComponent } from './edit-contextpack-name/edit-contextpack-name.component';
+import { AddWordlistComponent } from './add-wordlist/add-wordlist.component';
+import { AddWordComponent } from './add-word/add-word.component';
+import { WordFormComponent } from './word-form/word-form.component';
+
 
 const MATERIAL_MODULES: any[] = [
   MatListModule,
@@ -49,17 +57,25 @@ const MATERIAL_MODULES: any[] = [
   MatFormFieldModule,
   MatDividerModule,
   MatRadioModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatCheckboxModule,
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    UserListComponent,
-    UserCardComponent,
-    UserProfileComponent,
-    AddUserComponent,
+    ContextPackCardComponent,
+    ContextPackListComponent,
+    ContextPackInfoComponent,
+    AddContextpacksComponent,
+    WordlistCardComponent,
+    WordlistInfoComponent,
+    WordCardComponent,
+    EditContextpackNameComponent,
+    AddWordlistComponent,
+    AddWordComponent,
+    WordFormComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -70,10 +86,10 @@ const MATERIAL_MODULES: any[] = [
     FlexLayoutModule,
     HttpClientModule,
     MATERIAL_MODULES,
-    LayoutModule,
+    LayoutModule
   ],
   providers: [
-    UserService
+    ContextPackService
   ],
   bootstrap: [AppComponent]
 })

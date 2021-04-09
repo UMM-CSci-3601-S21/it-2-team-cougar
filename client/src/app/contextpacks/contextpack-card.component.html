@@ -1,0 +1,87 @@
+<mat-card class="contextpack-card" *ngIf="this.contextpack">
+  <mat-card-header>
+
+    <mat-card-title class="contextpack-card-name" *ngIf="editshow == true; else editname">{{
+      this.contextpack.name.charAt(0).toUpperCase() + this.contextpack.name.slice(1) }}</mat-card-title>
+    <ng-template #editname>
+      <mat-form-field>
+        <mat-label>{{this.contextpack.name}}</mat-label>
+        <input matInput name="name" [(ngModel)]="name">
+      </mat-form-field>
+      <button class="save-btn" (click)="saveName()">Save</button>
+    </ng-template>
+
+
+    <div class="enabled"*ngIf="this.contextpack.enabled">
+      <mat-icon class="checkmark"> check_circle</mat-icon>
+    </div>
+    <div class="disabled" *ngIf="!this.contextpack.enabled">
+      <mat-icon class="red-x">highlight_off</mat-icon>
+    </div>
+    <img mat-card-avatar class ="contextpack-card-icon" *ngIf="editshowicon == true; else editicon" src={{this.contextpack.icon}}>
+
+    <ng-template #editicon>
+      <mat-form-field>
+        <mat-label>Edit Context Pack Icon</mat-label>
+        <input matInput name="name" [(ngModel)]="icon">
+      </mat-form-field>
+      <button class="save-btn" (click)="saveIcon()">Save</button>
+    </ng-template>
+
+
+  </mat-card-header>
+  <button class="edit-name" (click)="changeName()" *ngIf="editshow">Edit Name</button>
+  <button class="edit-icon" (click)="changeIcon()" *ngIf="editshowicon">Edit Icon</button>
+  <button class="add-wordlist" [routerLink]="['/contextpacks', this.contextpack._id, 'addwordlist']">Add WordList</button>
+  <mat-card-content *ngIf="!this.simple">
+
+    <p><strong class="cpMetadata">Number of wordlists in Pack: {{this.contextpack.wordlists.length}}</strong></p>
+
+
+      <button mat-icon-button color="accent" class="contextpack-download-button" (click)='downloadJson(contextpack, contextpack.name).click()'>
+    <mat-icon class="download">download</mat-icon>
+  </button>
+
+    <mat-form-field>
+      <mat-label>View Type</mat-label>
+      <mat-select [(value)]="selected" data-test="contextpackWordSelect">
+        <mat-option value="true">View Wordlists</mat-option>
+        <mat-option value="false">View Words</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div *ngIf="selected === 'true'; else templateWords" >
+      <div *ngFor="let wordlists of contextpack.wordlists; let index = index">
+        <app-wordlist-card class="wordlist-card" [contextpack]="this.contextpack" [wordlist]="this.contextpack.wordlists[index]"></app-wordlist-card>
+      </div>
+    </div>
+
+    <ng-template #templateWords>
+
+      <span class="contextpack-card-nouns">
+        <div style="white-space: pre-line"><Strong>Nouns: </Strong>{{displayAllWords(this.contextpack, 'nouns')}}</div>
+      </span>
+      <span class="contextpack-card-verbs">
+        <div style="white-space: pre-line"><Strong>Verbs: </Strong>{{displayAllWords(this.contextpack, 'verbs')}}</div>
+      </span>
+      <span class="contextpack-card-adjectives">
+        <div style="white-space: pre-line"><Strong>Adjectives: </Strong>{{displayAllWords(this.contextpack, 'adjectives')}}</div>
+      </span>
+      <span class="contextpack-card-misc">
+        <div style="white-space: pre-line"><Strong>Misc: </Strong>{{displayAllWords(this.contextpack, 'misc')}}</div>
+      </span>
+
+    </ng-template>
+
+
+
+    <!-- <button class="contextpack-download-button" (click)='downloadJson(contextpack, contextpack.name).click()'>Download Json</button> -->
+
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button data-test="viewInfoButton" *ngIf="this.simple"
+      [routerLink]="['/contextpacks', this.contextpack._id]">View Info</button>
+  </mat-card-actions>
+
+
+</mat-card>

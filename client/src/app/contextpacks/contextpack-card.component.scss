@@ -1,0 +1,117 @@
+span.contextpack-card-wordlists{
+  display: inline-block;
+  background-color: rgba(0, 225, 255, 0.713);
+  border: 3px solid#01596e;
+  border-radius: 5px;
+  padding: 10px;
+  width: 70%;
+  margin: 5px;
+}
+
+.mat-card{
+  background-color:white;
+}
+.contextpack-card-name{
+  color:#01596e;
+}
+.checkmark{
+  color:green;
+}
+
+
+.edit-name, .edit-icon, .add-wordlist {
+  margin-right: 2px;
+  margin-bottom: 4px;
+  border-radius: 4px;
+  background-color: #02c3eb;
+  border: 2px solid #01596e;
+}
+
+.edit-name:hover, .edit-icon:hover, .add-wordlist:hover {
+  background-color: #02c4eba9;
+}
+.edit-name::after, .edit-icon::after {
+  display: block;
+}
+
+.red-x{
+  color:red;
+}
+
+span.contextpack-card-nouns{
+  display: inline-block;
+  background-color: #f33a21d0;
+  border: 3px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 5px;
+  width: 70%;
+  word-wrap: break-word;
+  display: flex;
+}
+
+span.contextpack-card-misc{
+  display: inline-block;
+  background-color: #e7f069;
+  border: 3px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 5px;
+  width: 70%;
+  word-wrap: break-word;
+  display:flex;
+
+}
+
+span.contextpack-card-adjectives{
+  display: inline-block;
+  background-color: #4df176;
+  border: 3px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  width: 70%;
+  margin: 5px;
+  word-wrap: break-word;
+  display: flex;
+
+}
+
+span.contextpack-card-verbs{
+  display: inline-block;
+  background-color:#50a5eb;
+  border: 3px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  width: 70%;
+  margin: 5px;
+  word-wrap: break-word;
+  display: flex;
+}
+
+
+.contextpack-download-button {
+  border:none;
+  margin-right:68%;
+  float:right;
+  color:#01596e;
+  background-color:#02c3eb;
+  border: 2px solid#01596e;
+  border-radius: 3px;
+}
+
+.wordlist-card {
+  padding: 5px !important;
+}
+
+.save-btn {
+  margin-bottom: 20px;
+  font-weight: bolder;
+  height: 30px;
+  background-color:rgb(101, 214, 101);
+  border: 2px solid green;
+  border-radius: 4px;
+}
+
+.save-btn:hover {
+  background-color:rgba(101, 214, 101, 0.76);
+}

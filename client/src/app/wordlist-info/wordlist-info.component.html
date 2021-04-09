@@ -1,0 +1,34 @@
+<mat-card class="wordList-card">
+  <div>
+    <div class="card-header">
+      <div *ngIf="editshow == true; else editname">
+        <h1 class="wordList-name" *ngIf="wordlist">{{this.wordlist.name}}</h1><button>Edit Name</button>
+      </div>
+      <ng-template #editname>
+        <mat-form-field class="title">
+          <mat-label>Edit Word List Name</mat-label>
+          <input matInput name="name" [(ngModel)]="name">
+        </mat-form-field>
+        <button (click)="save()">Save</button>
+      </ng-template>
+    </div>
+  </div>
+
+  <p class="enabled" *ngIf="wordlist">{{this.wordlist.enabled ? 'Enabled' : 'Disabled'}}</p>
+
+  <p><strong>Amount of Words in List:</strong></p>
+  <mat-card-subtitle *ngIf="wordlist">{{this.wordlist.nouns.length + this.wordlist.verbs.length + this.wordlist.adjectives.length +
+    this.wordlist.misc.length }}</mat-card-subtitle>
+
+  <button (click)="back()">Save & Exit</button>
+
+</mat-card>
+<div>
+  <div class="left">
+    <app-add-word (addWord)="addWord($event)" data-test="addWordButton"></app-add-word>
+  </div>
+  <div class="right">
+    <app-word-card class="wordcards" (delete)="deleteWord(i)" [word]="w" [type]="w.type ? w.type : types[i]"
+      [wordList]="wordlist" *ngFor="let w of words;index as i;" data-test="deleteWordButton"></app-word-card>
+  </div>
+</div>
