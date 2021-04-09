@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { ContextPack } from './contextpack';
+import { ContextPack, Wordlist } from './contextpack';
 import { map } from 'rxjs/operators';
 
 
@@ -43,6 +43,21 @@ export class ContextPackService {
     // Send post request to add a new user with the user data as the body.
     return this.httpClient.post<{id: string}>(this.contextpackUrl, newPack).pipe(map(res => res.id));
   }
+
+
+  editWordList(name: string, wordList: Wordlist, id: string): Observable<Wordlist> {
+    return this.httpClient.put<Wordlist>(this.contextpackUrl + '/' + id + '/' + name, wordList).pipe(map(res => res));
+  }
+
+  getWordListByName(name: string, id: string): Observable<Wordlist> {
+    return this.httpClient.get<Wordlist>(this.contextpackUrl + '/' + id + '/' + name);
+  }
+
+  addWordList(newWordList: Wordlist, id: string) {
+    return this.httpClient.post<Wordlist>(this.contextpackUrl + '/' + id + '/' + 'addwordlist', newWordList).pipe(map(res => res));
+  }
+
+
 
 
 }

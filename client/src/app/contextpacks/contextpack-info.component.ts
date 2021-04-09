@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ContextPack } from './contextpack';
 import { ContextPackService } from './contextpack.service';
@@ -19,6 +19,7 @@ export class ContextPackInfoComponent implements OnInit, OnDestroy {
   contextpack: ContextPack;
   id: string;
   getContextPackSub: Subscription;
+  getUserSub: Subscription;
 
   constructor(private route: ActivatedRoute, private contextPackService: ContextPackService) { }
 
@@ -32,7 +33,10 @@ export class ContextPackInfoComponent implements OnInit, OnDestroy {
         this.getContextPackSub.unsubscribe();
       }
       this.getContextPackSub = this.contextPackService.getContextPackById(this.id).subscribe(contextpack => this.contextpack = contextpack);
+
+
     });
+
   }
 
   ngOnDestroy(): void {

@@ -1,0 +1,45 @@
+<mat-card class="wordList-card">
+  <div>
+    <div class="card-header">
+        <h1 class="wordList-name"*ngIf="wordlist">{{this.wordlist.name}}</h1>
+      </div>
+    </div>
+
+  <p class="enabled" *ngIf="wordlist" >{{this.wordlist.enabled ? 'Enabled' : 'Disabled'}}</p>
+
+  <p><strong>Amount of Words in List:</strong></p>
+  <mat-card-subtitle>{{wordlist.nouns.length + wordlist.verbs.length + wordlist.adjectives.length + wordlist.misc.length }}</mat-card-subtitle>
+
+  <mat-card-content >
+    <div class= "list-detail">
+        <div class="nounsList">
+            <!--display:flex-->
+            <p  class="desc title-section" element="nouns"><strong>Nouns: </strong></p>
+            <p  color="primary" class="bubbleNoun" *ngFor="let noun of this.wordlist ? wordlist.nouns: []; let index = index">
+              <app-word-card [word]="this.wordlist ? this.wordlist.nouns[index]: []"></app-word-card></p>
+          </div>
+          <div class="verbsList">
+            <!--display:flex-->
+            <p  class="desc title-section" element="verbs"><strong>Verbs: </strong></p>
+            <p  color="primary" class="bubbleVerb" *ngFor="let verb of wordlist.verbs; let index = index">
+              <app-word-card [word]="this.wordlist.verbs[index]"></app-word-card></p>
+          </div>
+          <div class="adjectivesList">
+            <!--display:flex-->
+            <p  class="desc title-section" element="adjectives"><strong>Adjectives: </strong></p>
+            <p  color="primary" class="bubbleAdj" *ngFor="let adjective of wordlist.adjectives; let index = index">
+              <app-word-card [word]="this.wordlist.adjectives[index]"></app-word-card></p>
+          </div>
+          <div class="miscList">
+            <!--display:flex-->
+            <p  class="desc title-section" element="misc"><strong>Misc: </strong></p>
+            <p  color="primary" class="bubbleMisc" *ngFor="let misc of wordlist.misc; let index = index">
+              <app-word-card [isHidden]= "hideButton" [word]="this.wordlist.misc[index]"></app-word-card></p>
+
+          </div>
+    </div>
+  </mat-card-content>
+
+  <button class="view-wordlist" [routerLink]="['/contextpacks', this.contextpack? this.contextpack._id: '', this.wordlist.name]">View WordList</button>
+
+</mat-card>

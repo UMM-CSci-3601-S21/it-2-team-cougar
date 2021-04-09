@@ -33,6 +33,14 @@ import { ContextPackService } from './contextpacks/contextpack.service';
 import { ContextPackCardComponent } from './contextpacks/contextpack-card.component';
 import { ContextPackInfoComponent } from './contextpacks/contextpack-info.component';
 import { AddContextpacksComponent } from './contextpacks/add-contextpacks.component';
+import { WordlistCardComponent } from './wordlist-card/wordlist-card.component';
+import { WordlistInfoComponent } from './wordlist-info/wordlist-info.component';
+import { WordCardComponent } from './word-card/word-card.component';
+import { EditContextpackNameComponent } from './edit-contextpack-name/edit-contextpack-name.component';
+import { AddWordlistComponent } from './add-wordlist/add-wordlist.component';
+import { AddWordComponent } from './add-word/add-word.component';
+import { WordFormComponent } from './word-form/word-form.component';
+
 
 const MATERIAL_MODULES: any[] = [
   MatListModule,
@@ -61,7 +69,15 @@ const MATERIAL_MODULES: any[] = [
     ContextPackCardComponent,
     ContextPackListComponent,
     ContextPackInfoComponent,
-    AddContextpacksComponent
+    AddContextpacksComponent,
+    WordlistCardComponent,
+    WordlistInfoComponent,
+    WordCardComponent,
+    EditContextpackNameComponent,
+    AddWordlistComponent,
+    AddWordComponent,
+    WordFormComponent,
+
   ],
   imports: [
     BrowserModule,

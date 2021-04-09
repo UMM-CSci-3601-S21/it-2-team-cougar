@@ -38,6 +38,17 @@ describe('Context Pack service: ', () => {
     }
     ];
 
+    const newTestWordlist: Wordlist =
+      {
+        name: 'great',
+        enabled: false,
+        nouns: [],
+        verbs: [],
+        adjectives: [],
+        misc: []
+      }
+      ;
+
   const testContextPacks: ContextPack[] =
     [
       {
@@ -122,6 +133,7 @@ describe('Context Pack service: ', () => {
     const contextpackName = 'fun';
     expect(contextpackService.filterContextPacks(testContextPacks, { name: contextpackName }).length).toBe(1);
   });
+
   it('add contextpack posts to api/users', () => {
 
     contextpackService.addContextPack(testContextPacks[1]).subscribe(
@@ -135,5 +147,47 @@ describe('Context Pack service: ', () => {
 
     req.flush({id: 'testid'});
   });
+
+  it('add wordlist posts to api/users', () => {
+
+    const targetContextPack: ContextPack = testContextPacks[0];
+    const targetId: string = targetContextPack._id;
+
+    contextpackService.addWordList(newTestWordlist, targetId).subscribe();
+
+    const req = httpTestingController.expectOne(contextpackService.contextpackUrl + '/' + targetId + '/' + 'addwordlist');
+    expect(req.request.method).toEqual('POST');
+
+    req.flush(testContextPacks);
+
+
+  });
+
+  it('get wordlist to api/users', () => {
+
+    contextpackService.getWordListByName('happy', 'chris_id').subscribe();
+
+    const req = httpTestingController.expectOne(contextpackService.contextpackUrl + '/' + 'chris_id' + '/' + 'happy');
+    expect(req.request.method).toEqual('GET');
+
+    req.flush(testContextPacks);
+
+  });
+
+
+  it('edit wordlist to api/users', () => {
+
+    contextpackService.editWordList('happy', newTestWordlist, 'chris_id').subscribe();
+
+    const req = httpTestingController.expectOne(contextpackService.contextpackUrl + '/' + 'chris_id' + '/' + 'happy');
+    expect(req.request.method).toEqual('PUT');
+
+    req.flush(testContextPacks);
+
+  });
+
+
+
+
 });
 

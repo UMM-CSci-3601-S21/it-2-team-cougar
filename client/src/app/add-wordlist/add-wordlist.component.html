@@ -1,0 +1,21 @@
+<mat-card>
+  <h1>Add WordList</h1>
+  <div>
+    <mat-label>WordList Name: </mat-label>
+    <mat-form-field class="title">
+      <input matInput [(ngModel)]="wordlistname">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-label>Enabled: </mat-label>
+    <mat-form-field appearance="fill">
+      <mat-label>Enabled:</mat-label>
+      <mat-select [(ngModel)]="type">
+        <mat-option value= true>True</mat-option>
+        <mat-option value= false>False</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <br>
+  <button class="save-btn" (click)="save()">Save Wordlist</button>
+</mat-card>

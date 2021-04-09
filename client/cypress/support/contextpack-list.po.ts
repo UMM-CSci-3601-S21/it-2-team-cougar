@@ -37,6 +37,4 @@ export class ContextpackListPage {
     return cy.get(`[data-test=viewTypeRadio] .mat-radio-button[value="${viewType}"]`).click();
   }
 
-
-
 }

@@ -3,6 +3,10 @@ import { ContextPackCardComponent } from './contextpack-card.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
 import { Word, Wordlist } from './contextpack';
+import { ActivatedRouteStub } from 'src/testing/activated-route-stub';
+import { ActivatedRoute } from '@angular/router';
+import { ContextPackService } from './contextpack.service';
+import { MockContextPackService } from 'src/testing/contextpack.service.mock';
 
 
 describe('ContextPackCardComponent', () => {
@@ -12,6 +16,8 @@ describe('ContextPackCardComponent', () => {
   let component2: ContextPackCardComponent;
   let fixture2: ComponentFixture<ContextPackCardComponent>;
   let emptyWordlist: Wordlist;
+  const activatedRoute: ActivatedRouteStub =
+      new ActivatedRouteStub();
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -19,7 +25,9 @@ describe('ContextPackCardComponent', () => {
         BrowserAnimationsModule,
         MatCardModule
       ],
-      declarations: [ ContextPackCardComponent ]
+      declarations: [ ContextPackCardComponent ],
+      providers:[{provide: ActivatedRoute, useValue: activatedRoute,},
+        { provide: ContextPackService, useValue: new MockContextPackService()}]
     })
     .compileComponents();
   }));
