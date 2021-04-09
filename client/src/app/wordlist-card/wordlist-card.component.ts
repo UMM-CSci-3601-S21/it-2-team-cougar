@@ -16,6 +16,8 @@ export class WordlistCardComponent implements OnInit {
   @Input() simple ? = false;
   getUserSub: Subscription;
   originalName: string;
+  hideButton: false;
+
 
 
 

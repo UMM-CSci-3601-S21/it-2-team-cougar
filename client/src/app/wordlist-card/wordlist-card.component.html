@@ -34,7 +34,7 @@
             <!--display:flex-->
             <p  class="desc title-section" element="misc"><strong>Misc: </strong></p>
             <p  color="primary" class="bubbleMisc" *ngFor="let misc of wordlist.misc; let index = index">
-              <app-word-card [word]="this.wordlist.misc[index]"></app-word-card></p>
+              <app-word-card [isHidden]= "hideButton" [word]="this.wordlist.misc[index]"></app-word-card></p>
 
           </div>
     </div>
