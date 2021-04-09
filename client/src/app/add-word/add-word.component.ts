@@ -35,8 +35,8 @@ export class AddWordComponent implements OnInit {
 
   ngOnInit(): void {
     this.router.paramMap.subscribe((pmap) => {
-      this.id = pmap ? pmap.get('id') : '';
-      this.name = pmap ? pmap.get('name') : '';
+      this.id = pmap.get('id');
+      this.name = pmap.get('name');
     });
     console.log(this.id);
     console.log(this.name);
