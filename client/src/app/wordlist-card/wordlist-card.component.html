@@ -40,6 +40,6 @@
     </div>
   </mat-card-content>
 
-  <button class="view-wordlist" [routerLink]="['/contextpacks', this.contextpack._id, this.wordlist.name]">View WordList</button>
+  <button class="view-wordlist" [routerLink]="['/contextpacks', this.contextpack? this.contextpack._id: '', this.wordlist.name]">View WordList</button>
 
 </mat-card>
