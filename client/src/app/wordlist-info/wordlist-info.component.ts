@@ -12,24 +12,26 @@ import { ContextPackService } from '../contextpacks/contextpack.service';
 export class WordlistInfoComponent implements OnInit {
 
   @Input() contextpack: ContextPack;
-  wordlist: Wordlist;
+  wordlist: Wordlist = { name: '', enabled:true, nouns: [], verbs: [], adjectives: [], misc: []};
   getUserSub: Subscription;
   enabled: boolean;
 
   id = '';
   name = '';
-  words;
+  words = [];
   wordType: string;
   types: string[];
   editshow= true;
   originalName: string;
+  wordlistname: '';
+  finished = false;
 
   constructor(private router: ActivatedRoute, private contextPackService: ContextPackService, private route: Router) { }
 
   ngOnInit(): void {
     this.router.paramMap.subscribe((pmap) => {
-      this.id = pmap ? pmap.get('id') : '';
-      this.name = pmap ? pmap.get('name') : '';
+      this.id = pmap.get('id');
+      this.name = pmap.get('name');
       this.loadWords();
 
     });
@@ -41,6 +43,7 @@ export class WordlistInfoComponent implements OnInit {
     this.wordlist[word.type].unshift({ word: word.name, forms: word.forms });
     this.words.unshift({ word: word.name, forms: word.forms,type: word.type});
     this.types = this.refreshTypes(this.words);
+    return word.type;
   }
 
   deleteWord(i: number) {
@@ -65,6 +68,14 @@ export class WordlistInfoComponent implements OnInit {
       this.enabled = i.enabled;
       this.getAllWords();
     });
+  }
+
+  check() {
+    if (this.name && this.wordType) {
+      this.finished = this.name.length > 1 && this.wordType.length > 1;
+      console.log(this.name.length);
+    }
+    return this.finished;
   }
 
 
