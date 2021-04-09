@@ -90,12 +90,10 @@ describe('Contextpack list', () => {
     cy.get('.contextpack-download-button').should('have.text', 'download');
   });
 
-  it('Should click view info and see name and status', () => {
+  it('Should click view info and see name', () => {
     page.clickViewInfo(page.getContextpackCards().first());
 
     cy.get('.contextpack-card-name').should('have.text', 'Farm');
-    
-    cy.get('.contextpack-card-enabled').should('have.text', 'Enabled: true');
   });
 
   it('Should click view info and check for the number of wordlists', () => {
